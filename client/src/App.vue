@@ -2,16 +2,17 @@
   <div id="app">
     <PageHeader/>
     <router-view/>
-  </div>
+    </div>
 </template>
 
 <script>
 import PageHeader from '@/components/Header.vue'
+const url="http://localhost:3000"
 export default {
   name: 'App',
   components: {
     PageHeader
-  }
+  },
 }
 </script>
 

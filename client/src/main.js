@@ -5,12 +5,13 @@ import App from './App'
 import router from './router'
 import VueMaterial from 'vue-material'
 import BootstrapVue from 'bootstrap-vue'
-import 'vue-material/dist/vue-material.min.css'
+import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 Vue.use(BootstrapVue)
 Vue.use(VueMaterial)
-
+Vue.prototype.$http=axios
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
