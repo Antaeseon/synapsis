@@ -1,9 +1,28 @@
 <template>
 <div id="appp">
     <div id="topheader">
+   <b-link to="/" id="maintitle">League of Sports</b-link>
 
-        <span>League of Sports</span>
+    <div>
+    <b-btn variant="primary" class="float-right" id="btnSignup" to='/signup'>sign-up</b-btn>    
+    <b-btn v-b-modal.modalPrevent variant="primary" class="float-right">sign-in</b-btn>
+    <!-- Modal Component -->
+    <b-modal id="modalPrevent"
+             ref="modal"
+             title="Login"
+             @ok="handleOk"
+             @shown="clearName">
+      <form @submit.stop.prevent="handleSubmit">
+        <b-form-input type="text"
+                      placeholder="Enter your id"
+                      v-model="id"></b-form-input>
+        <b-form-input type="text"
+        placeholder="Enter your password"
+        v-model="password"></b-form-input>
 
+      </form>
+    </b-modal>
+  </div>
 
 
    </div>
@@ -16,19 +35,19 @@
         <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="#/login">내 팀 전적보기</a>
+                    <b-btn class="nav-link" variant="outline-primary" to="/"> 내 팀 전적보기</b-btn>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">팀 매칭</a>
+                    <b-btn class="nav-link" variant="outline-primary" to="/">팀 매칭</b-btn>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">랭킹 정보</a>
+                    <b-btn class="nav-link" variant="outline-primary" to="/">랭킹 정보</b-btn>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">용병 정보</a>
+                    <b-btn class="nav-link" variant="outline-primary" to="/">용병 정보</b-btn>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">게시판</a>
+                    <b-btn class="nav-link" variant="outline-primary" to="/">게시판</b-btn>
                 </li>
             </ul>
         </div>
@@ -44,42 +63,53 @@
 
 <script>
 export default {
-  data(){
-     return{
-            id:"",
-            password:"",
-            authenticated:false
-        }
-    },
-    methods:{
+  data () {
+    return {
+      id: '',
+      password: ''
+    }
+  },
+  methods: {
     clearName () {
-      this.id = '',
+      this.id = ''
       this.password=''
     },
     handleOk (evt) {
       // Prevent modal from closing
       evt.preventDefault()
       if (!this.id) {
-        alert('Please enter your id')
-      }else if(!this.password){
+        alert('Please enter your name')
+      } else if(!this.password){
         alert('Please enter your password')
       }
-       else {
+     else{
         this.handleSubmit()
       }
     },
     async handleSubmit () {
-        this.clearName()
+      console.log(this.id,this.password)
+      try{
+      await this.$http.post('http://localhost:3000/login',{
+          id : this.id,
+          password : this.password
+      })
+      }
+      catch(err){
+          alert('login failed')
+      }
+      this.clearName()
+      this.$refs.modal.hide()
     }
   }
-
 }
+
 </script>
     
 <style>
 @import url(http://fonts.googleapis.com/css?family=Roboto);
 .nav-link{
     width: 200px;
+    margin-left: 5px;
 }
 b-button{
     border: 1mm black;
@@ -102,4 +132,13 @@ body{
 .abc{
       margin-left: 10px;
 }
+#btnSignup{
+    margin-left:15px;
+    margin-right:15px;
+}
+#maintitle{
+    color:black;
+    font-size: 40px;
+}
 </style>
+
