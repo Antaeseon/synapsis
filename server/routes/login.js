@@ -16,7 +16,7 @@ router.post('/',function(req,res,next){
   // check exist user
   const check = function(user){
     if(!user){  //유저 존재 안함
-    throw new Error('1 login failed');
+    throw new Error('user not exist');
     } else {
       if(user.verify(password)){ //비밀번호 맞음
         const p = new Promise((resolve,reject)=>{
@@ -35,24 +35,24 @@ router.post('/',function(req,res,next){
         });
         return p;
       } else { //비밀번호 틀림
-        throw new Error('2 login failed');
+        throw new Error('incorrect password');
       }
     }
   };
 
   // return token
-  const respond = function(token){
-    console.log(token)
+  const respond = function(Token){
+    console.log(Token)
     res.json({
       message: 'logged in successfully',
-      token
+      Token
     });
   };
 
   // Error handling
   const onError = function(error){
       console.log("-------------------------this",error.message)
-    res.status(403).json({
+    res.status(406).json({
         message: error.message
     })
   };

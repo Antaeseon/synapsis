@@ -4,8 +4,10 @@
    <b-link to="/" id="maintitle">League of Sports</b-link>
 
     <div>
-    <b-btn variant="primary" class="float-right" id="btnSignup" to='/signup'>sign-up</b-btn>    
-    <b-btn v-b-modal.modalPrevent variant="primary" class="float-right">sign-in</b-btn>
+    <b-btn variant="primary" class="float-right" id="btnSignup" to='/signup'  v-if="!Token"> sign-up</b-btn>    
+    <b-btn v-b-modal.modalPrevent variant="primary" class="float-right"  v-if="!Token">sign-in</b-btn>
+    <b-btn variant="primary" class="float-right" @click="logout"  v-if="Token"> logout</b-btn>    
+    
     <!-- Modal Component -->
     <b-modal id="modalPrevent"
              ref="modal"
@@ -62,14 +64,24 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
+
   data () {
     return {
       id: '',
       password: ''
     }
   },
+ computed :{
+     ...mapGetters([
+          'Token'
+      ])
+  },
   methods: {
+    logout(){
+        this.$store.commit('signOut')
+    },
     clearName () {
       this.id = ''
       this.password=''
@@ -87,15 +99,21 @@ export default {
       }
     },
     async handleSubmit () {
+        console.log('들어옴')
       console.log(this.id,this.password)
       try{
-      await this.$http.post('http://localhost:3000/login',{
-          id : this.id,
-          password : this.password
-      })
+         await this.$store.dispatch('login',{
+             id:this.id,
+             password:this.password
+         })
+    //   await this.$http.post('http://localhost:3000/login',{
+    //       id : this.id,
+    //       password : this.password
+    //     })
       }
       catch(err){
-          alert('login failed')
+        console.log(err)
+        alert('login failed')
       }
       this.clearName()
       this.$refs.modal.hide()

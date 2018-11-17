@@ -23,13 +23,18 @@ data () {
     }
   },
     methods:{
-        register(){
-            console.log(`${config.uri}`)
+        async register(){
             console.log(this.id,this.password)
-            this.$http.post(`${config.uri}/register`,{
-                id:this.id,
-                password:this.password
-            })
+            try{
+            await this.$http.post(`${config.uri}/register`,{
+                    id:this.id,
+                    password:this.password,
+                })
+                this.$router.push('home')
+            }
+            catch(err){
+                alert('register failed')
+            }
     }
 }
 }
