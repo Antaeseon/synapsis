@@ -7,7 +7,6 @@
 
 <script>
 import PageHeader from '@/components/Header.vue'
-const url="http://localhost:3000"
 export default {
   name: 'App',
   components: {

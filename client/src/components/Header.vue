@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     logout(){
-        this.$store.commit('signOut')
+        this.$store.dispatch('signOut')
     },
     clearName () {
       this.id = ''

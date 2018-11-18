@@ -7,8 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        id: '',
-        Token:''
+        id: localStorage.getItem('id'),
+        Token:localStorage.getItem('Token')
     },
     getters: {
         id: state => state.id,
@@ -18,6 +18,8 @@ export default new Vuex.Store({
         login (state, { id, Token }) {
             state.id = id
             state.Token = Token
+            localStorage.setItem('Token',Token)
+            localStorage.setItem('id',id)
 
         },
         signOut (state) {
@@ -37,8 +39,6 @@ export default new Vuex.Store({
                 axios.post(`${config.uri}/login`,{id,password})
                 .then(res=>{
                     const Token=res.data.Token
-                    localStorage.setItem('Token',Token)
-                    localStorage.setItem('id',id)
                     console.log(res)
                     console.log(id,Token)
                     console.log(`${Token} 저장됨...`)
@@ -52,15 +52,7 @@ export default new Vuex.Store({
                 })
             })
         },
-        // async login ({ commit }, { id, password }) {
-        //     let url = `${config.uri}/login`
-        //     try {
-        //         let  data  = await axios.post(url, { id, password })
-        //         commit('login', data)
-        //     } catch (err) {
-        //         throw err
-        //     }
-        
+
         signOut ({ commit }) {
             commit('signOut')
         }
