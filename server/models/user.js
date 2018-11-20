@@ -4,13 +4,13 @@ const Schema = mongoose.Schema
 const User = new Schema({
     id: String,
     password: String,
+    admin: { type: Boolean, default: false }
 })
 
 User.statics.create = function(id, password) {
     const user = new this({
         id,
         password,
-        admin: { type: Boolean, default: false }
     })
 
     // return the Promise

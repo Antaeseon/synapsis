@@ -1,5 +1,5 @@
 <template>
-      <div>
+    <div>
     <b-form-input v-model="id"
     type="text"
     placeholder="Enter your id" class="inputform"></b-form-input>
@@ -14,41 +14,41 @@
 </template>
 
 <script>
-import config from '../../config/config'
+import config from "../../config/config";
 export default {
-data () {
+  data() {
     return {
-      id: '',
-      password:''
-    }
+      id: "",
+      password: ""
+    };
   },
-    methods:{
-        async register(){
-            console.log(this.id,this.password)
-            try{
-            await this.$http.post(`${config.uri}/register`,{
-                    id:this.id,
-                    password:this.password,
-                })
-                this.$router.push('home')
-            }
-            catch(err){
-                alert('register failed')
-            }
+  methods: {
+    async register() {
+      console.log(this.id, this.password);
+      try {
+        await this.$http.post(`${config.uri}/register`, {
+          id: this.id,
+          password: this.password
+        });
+        this.$router.push("/");
+      } catch (error) {
+        console.log(error.response.data.message)
+        alert(error.response.data.message);
+      }
     }
-}
-}
+  }
+};
 </script>
 
 <style>
-    .inputform{
-        margin-left: auto;
-        margin-right: auto;
-        margin-top:10px;
-        width:30%;
-    }
+.inputform {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+  width: 30%;
+}
 
-    .inputButton{
-        margin-top: 30px;
-    }
+.inputButton {
+  margin-top: 30px;
+}
 </style>

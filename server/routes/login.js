@@ -52,7 +52,7 @@ router.post('/',function(req,res,next){
   // Error handling
   const onError = function(error){
       console.log("-------------------------this",error.message)
-    res.status(406).json({
+    res.status(405).json({
         message: error.message
     })
   };

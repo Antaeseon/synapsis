@@ -9,8 +9,10 @@ router.post('/', function(req, res, next) {
 
     // create a new user if does not exist
     const create = (user) => {
+        console.log(user)
         if(user) {
-            throw new Error('id exists')
+            console.log('유저존재')
+            return Promise.reject('id exists')
         } else {
             return User.create(id, password)
         }
@@ -24,6 +26,7 @@ router.post('/', function(req, res, next) {
 
     // assign admin if count is 1
     const assign = (count) => {
+        console.log('assign')
         if(count === 1) {
             return newUser.assignAdmin()
         } else {
@@ -34,6 +37,7 @@ router.post('/', function(req, res, next) {
 
     // respond to the client
     const respond = (isAdmin) => {
+        console.log('respond!!')
         res.json({
             message: 'registered successfully',
             admin: isAdmin ? true : false
@@ -42,8 +46,9 @@ router.post('/', function(req, res, next) {
 
     // run when there is an error (id exists)
     const onError = (error) => {
-        res.status(409).json({
-            message: error.message
+        console.log(error)
+        res.status(405).json({
+            message: error
         })
     }
 

@@ -20,7 +20,6 @@ export default new Vuex.Store({
             state.Token = Token
             localStorage.setItem('Token',Token)
             localStorage.setItem('id',id)
-
         },
         signOut (state) {
             state.Token = null
@@ -49,7 +48,7 @@ export default new Vuex.Store({
                     console.log("여기서 에러....")
                     localStorage.removeItem('Token')
                     reject(err)
-                })
+                 })
             })
         },
 
