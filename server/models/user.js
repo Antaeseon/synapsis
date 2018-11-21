@@ -4,9 +4,9 @@ const Schema = mongoose.Schema
 const User = new Schema({
     id: {type :String, required : true},
     password: {type :String, required : true},
-    teamName:{type :String, required : true},
+    teamName:{type :String,default:null},
     sportsCategory:{type :String, required : true},
-    position:{type :String, required : true},
+    position:{type :String,default:'Allround'},
     isTeamLeader:{type : Boolean,required:true},
     admin: { type: Boolean, default: false }
 })

@@ -1,50 +1,57 @@
 <template>
     <div>
-      <b-form-group
-        label-for="input1"
-        :invalid-feedback="invalidFeedback"
-        :valid-feedback="validFeedback"
-        :state="state"
-      >
-        <b-form-input v-model.trim="id"
-        type="text"
-        placeholder="Enter your id" id ='input1' class="inputform" :state="state"></b-form-input>
+    <b-form-input v-model.trim="id"
+    id="inputLive"
+    :state="nameState"
+    aria-describedby="inputLiveFeedback"
+
+    type="text"
+    placeholder="Enter your id" 
+    class="inputform"></b-form-input>
+
+    <b-form-invalid-feedback id="inputLiveFeedback">
+      <!-- This will only be shown if the preceeding input has an invalid state -->
+      Enter at least 3 letters
+    </b-form-invalid-feedback>
+
+
+
+    <b-form-input v-model.trim="password"
+    id="inputLive"
+    :state="passwordState"
+    aria-describedby="inputLiveFeedback"
+    type="text"
+    placeholder="Enter your password" 
+    class="inputform"></b-form-input>
+
+    <b-form-invalid-feedback id="inputLiveFeedback">
+      <!-- This will only be shown if the preceeding input has an invalid state -->
+      Enter at least 8 letters
+    </b-form-invalid-feedback>
+
+
+    <b-form-input v-model="teamname"
+    type="text"
+    placeholder="Enter your Team Name" class="inputform"></b-form-input>
+
+    <b-form-input v-model="position"
+    type="text"
+    placeholder="Enter your Position" class="inputform"></b-form-input>
+
+    <div class="categorydiv">
+      <b-form-select v-model="selected" :options="options" class="mt-1" />
+    </div>
+
+    <div class="mt-5">
+      <b-form-group label="Is team Leader?">
+        <b-form-radio-group id="radios1" v-model="teamLeader" :options="teamoptions" name="radioOpenions">
+        </b-form-radio-group>
       </b-form-group>
-      <b-form-group
-        label-for="input1"
-        :invalid-feedback="invalidFeedback"
-        :valid-feedback="validFeedback"
-        :state="state"
-      >
+    </div>
 
-      <b-form-input v-model="password"
-      type="text"
-      placeholder="Enter your password" class="inputform"></b-form-input>
-     </b-form-group>
-
-      <b-form-input v-model="teamname"
-      type="text"
-      placeholder="Enter your Team Name" class="inputform"></b-form-input>
-
-      <b-form-input v-model="position"
-      type="text"
-      placeholder="Enter your Position" class="inputform"></b-form-input>
-
-      <div class="categorydiv">
-        <b-form-select v-model="selected" :options="options" class="mt-1" />
-      </div>
-
-      <div class="mt-5">
-        <b-form-group label="Is team Leader?">
-          <b-form-radio-group id="radios1" v-model="teamLeader" :options="teamoptions" name="radioOpenions">
-          </b-form-radio-group>
-        </b-form-group>
-      </div>
-
-      <b-button class="inputButton" variant="primary"  @click="register">submit</b-button>
-      <b-button to="/" class="inputButton" variant="primary">home</b-button>
-      <b-button class="inputButton" variant="primary"  @click="test">testbutton</b-button>
-
+    <b-button class="inputButton" variant="primary"  @click="register">submit</b-button>
+    <b-button to="/" class="inputButton" variant="primary">home</b-button>
+    <b-button class="inputButton" variant="primary"  @click="test">testbutton</b-button>
 
   </div>
 </template>
@@ -52,22 +59,12 @@
 <script>
 import config from "../../config/config";
 export default {
-  computed:{
-    state () {
-      return this.id.length >= 4 ? true : false
+    computed: {
+    nameState () {
+      return this.id.length > 2 ? true : false
     },
-      invalidFeedback () {
-        console.log(this.id)
-      if (this.id.length > 4) {
-        return ''
-      } else if (this.id.length > 0) {
-        return 'Enter at least 4 characters'
-      } else {
-        return 'Please enter something'
-      }
-    },
-    validFeedback () {
-      return this.state === true ? 'Thank you' : ''
+    passwordState(){
+      return this.password.length>7?true : false
     }
   },
   data() {
@@ -93,6 +90,16 @@ export default {
   },
   methods: {
     async register() {
+      if(this.id.length<3){
+        alert('Please fill Id')
+        return
+      }else if(this.password.length<8){
+        alert('Please fill Password')
+        return
+      }else if(!this.selected){
+        alert('Please check category')
+        return
+      }
       console.log(this.id, this.password);
       try {
         await this.$http.post(`${config.uri}/register`, {

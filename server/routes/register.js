@@ -13,14 +13,22 @@ router.post('/', function(req, res, next) {
     let newUser = null
 
     // create a new user if does not exist
-    const create = (user) => {
+    const create = async (user) => {
+        console.log('팀 존재 유무',isTeamLeader)    
+    
+        var team=await User.findOneByTeam(teamName)
+
         if(user) {
-            console.log(teamName)
             return Promise.reject('id exists')
-        }else if(!isTeamLeader&&User.findOneByTeam(teamName)){
+        }else if(isTeamLeader&&teamName==""){
+            return Promise.reject('please enter team name')
+        }else if(!isTeamLeader&&teamName==""){
+            return User.create(id, password,teamName,sportsCategory,position,isTeamLeader)
+        }else if(!isTeamLeader&&!team){
             return Promise.reject('team not exist')
         }
          else {
+             console.log(teamName,isTeamLeader)
             return User.create(id, password,teamName,sportsCategory,position,isTeamLeader)
         }
     }
