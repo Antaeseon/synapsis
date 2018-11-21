@@ -2,15 +2,23 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const User = new Schema({
-    id: String,
-    password: String,
+    id: {type :String, required : true},
+    password: {type :String, required : true},
+    teamName:{type :String, required : true},
+    sportsCategory:{type :String, required : true},
+    position:{type :String, required : true},
+    isTeamLeader:{type : Boolean,required:true},
     admin: { type: Boolean, default: false }
 })
 
-User.statics.create = function(id, password) {
+User.statics.create = function(id, password,teamName,sportsCategory,position,isTeamLeader) {
     const user = new this({
         id,
         password,
+        teamName,
+        sportsCategory,
+        position,
+        isTeamLeader
     })
 
     // return the Promise
@@ -22,6 +30,12 @@ User.statics.findOneById = function(id) {
         id
     }).exec()
   }
+
+User.statics.findOneByTeam = function(teamName){
+    return this.findOne({
+        teamName
+    }).exec()
+}
 
 // verify the password of the User documment
 User.methods.verify = function(password) {

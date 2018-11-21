@@ -4,17 +4,24 @@ const User = require('../models/user');
 
 router.post('/', function(req, res, next) {
 
-    const { id, password } = req.body
+    const {id,
+        password,
+        teamName,
+        sportsCategory,
+        position,
+        isTeamLeader } = req.body
     let newUser = null
 
     // create a new user if does not exist
     const create = (user) => {
-        console.log(user)
         if(user) {
-            console.log('유저존재')
+            console.log(teamName)
             return Promise.reject('id exists')
-        } else {
-            return User.create(id, password)
+        }else if(!isTeamLeader&&User.findOneByTeam(teamName)){
+            return Promise.reject('team not exist')
+        }
+         else {
+            return User.create(id, password,teamName,sportsCategory,position,isTeamLeader)
         }
     }
 
