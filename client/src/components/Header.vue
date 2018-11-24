@@ -17,7 +17,6 @@
         </b-modal>
       </div>
   
-  
     </div>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
       <div class="d-flex w-50 order-0">
