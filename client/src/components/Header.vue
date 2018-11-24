@@ -1,8 +1,11 @@
 <template>
   <div id="appp">
     <div id="topheader">
-      <b-link to="/" id="maintitle">League of Sports</b-link>
-  
+      <div>
+      <b-link to="/" id="maintitle" >League of Sports</b-link>
+      <span v-if="Token"><b-img left src="https://picsum.photos/125/125/?image=43" rounded="circle" height='70%' width='70%' alt="left image" /></span>
+      <span class="float-left ml-1 mb-0" v-if="Token">{{showId}} </span>
+      </div>
       <div>
         <b-btn variant="primary" class="float-right" id="btnSignup" to='/signup' v-if="!Token"> sign-up</b-btn>
         <b-btn v-b-modal.modalPrevent variant="primary" class="float-right" v-if="!Token">sign-in</b-btn>
@@ -16,7 +19,6 @@
           </form>
         </b-modal>
       </div>
-  
     </div>
     <nav class="navbar navbar-expand-md navbar-dark bg-primary">
       <div class="d-flex w-50 order-0">
@@ -27,7 +29,7 @@
       <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <b-btn class="nav-link" variant="outline-primary" to="/"> 내 팀 전적보기</b-btn>
+            <b-btn class="nav-link" variant="outline-primary" to="/stat"> 내 팀 전적보기</b-btn>
           </li>
           <li class="nav-item">
             <b-btn class="nav-link" variant="outline-primary" to="/">팀 매칭</b-btn>
@@ -64,7 +66,10 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["Token"])
+    ...mapGetters({
+      Token:"Token",
+      showId:"id"}
+      )
   },
   methods: {
     logout() {
@@ -125,7 +130,7 @@ b-button {
 
 #topheader {
   margin-left: 20px;
-  margin-bottom: 50px;
+  margin-bottom: 60px;
   margin-top: 20px;
   font-size: 30px;
 }
@@ -146,6 +151,7 @@ body {
 #maintitle {
   color: black;
   font-size: 40px;
+  display: inline
 }
 </style>
 
