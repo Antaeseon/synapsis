@@ -16,5 +16,6 @@ npm install
 
 * cd client
   * npm run dev
-*cd server
+  
+* cd server
   * npm start
