@@ -1,14 +1,14 @@
 <template>
     <div class="statC">
         <div>
-            <b-btn v-b-modal.myModal variant="primary" class="float-lg-right">용병등록</b-btn>
+            <b-btn v-b-modal.myModal variant="primary" class="float-md-right col-2 ml-10">전적 등록</b-btn>
                 <b-modal no-close-on-backdrop centered id="myModal"
-                    size="md"  hide-footer title="용병등록">
+                    size="md"  hide-footer title="전적 등록">
                 <mercenary></mercenary>
                 </b-modal>
         </div>
-        <br><br> 
-        <div class="border border-secondary mt-5">
+        <br>
+        <div class="border border-secondary mt-4">
             <b-row class= "m-1">
                 <b-col cols="4" class="ml-10">
                         <b-img left src="https://picsum.photos/125/125/?image=43" rounded="circle" height='70%' width='70%'  class="mr-3 mt-1"/>
@@ -41,7 +41,7 @@
         </div>
         <hr>
         <ul class="list-group w-50 mx-auto">
-            <li class="list-group-item list-group-item-info" v-for="item in items">{{item}}</li>
+            <li class="list-group-item list-group-item-info m-1" v-for="item in items">{{item}}</li>
         </ul>
 
     </div>            
