@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Main from '@/components/Main'
 import SignUp from '@/components/SignUp'
 import Stat from '@/components/Stat'
+import Postpage from '@/components/Postpage'
+import Write from '@/components/Write'
 
 Vue.use(Router)
 
@@ -22,6 +24,16 @@ export default new Router({
       path: '/stat',
       name: 'stat',
       component : Stat
+    },
+    {
+      path: '/postpage',
+      name: 'postpage',
+      component: Postpage
+    },
+    {
+      path: '/postpage/wirte',
+      name: 'write',
+      component: Write
     }
   ]
 })
