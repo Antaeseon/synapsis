@@ -1,15 +1,16 @@
 <template>
   <div id="appp">
     <div id="topheader">
-      <div>
-      <b-link to="/" id="maintitle" >League of Sports</b-link>
-      <span v-if="Token"><b-img left src="https://picsum.photos/125/125/?image=43" rounded="circle" height='70%' width='70%' alt="left image" /></span>
-      <span class="float-left ml-1 mb-0" v-if="Token">{{showId}} </span>
-      </div>
-      <div>
+      <b-row>
+        <b-col v-if="Token"><span class ="float-left"><b-img left src="https://picsum.photos/125/125/?image=43" rounded="circle" height='70%' width='70%' alt="left image" class="mr-3 mt-3"/> {{showId}}<p>dd</p></span></b-col>
+        <b-col v-if="!Token"/>
+        <b-col><b-link to="/" id="maintitle" >League of Sports</b-link></b-col>
+        <b-col></b-col>
+      </b-row>
         <b-btn variant="primary" class="float-right" id="btnSignup" to='/signup' v-if="!Token"> sign-up</b-btn>
         <b-btn v-b-modal.modalPrevent variant="primary" class="float-right" v-if="!Token">sign-in</b-btn>
         <b-btn variant="primary" class="float-right" @click="logout" v-if="Token"> logout</b-btn>
+      <div>
   
         <!-- Modal Component -->
         <b-modal id="modalPrevent" ref="modal" title="Login" @ok="handleOk" @shown="clearName">
@@ -29,16 +30,16 @@
       <div class="navbar-collapse collapse justify-content-center order-2" id="collapsingNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <b-btn class="nav-link" variant="outline-primary" to="/stat"> 내 팀 전적보기</b-btn>
+            <b-btn class="nav-link" variant="outline-primary" to="/stat"  @click="checkAuth"> 내 팀 전적보기</b-btn>
           </li>
           <li class="nav-item">
-            <b-btn class="nav-link" variant="outline-primary" to="/">팀 매칭</b-btn>
+            <b-btn class="nav-link" variant="outline-primary" to="/" @click="checkAuth">팀 매칭</b-btn>
           </li>
            <li class="nav-item">
-            <b-btn class="nav-link" variant="outline-primary" to="/">랭킹 정보</b-btn>
+            <b-btn class="nav-link" variant="outline-primary" to="/" >랭킹 정보</b-btn>
           </li>
           <li class="nav-item">
-            <b-btn class="nav-link" variant="outline-primary" to="/">용병 정보</b-btn>
+            <b-btn class="nav-link" variant="outline-primary" to="/" @click="checkAuth">용병 정보</b-btn>
           </li>
           <li class="nav-item">
             <b-btn class="nav-link" variant="outline-primary" to="/">게시판</b-btn>
@@ -49,7 +50,6 @@
     </nav>
     
     <!-- 여기서부터 body -->
-  
     <body>
   
     </body>
@@ -72,6 +72,14 @@ export default {
       )
   },
   methods: {
+    checkAuth(){
+      if(!this.$store.getters.id){
+        alert('로그인부터...')
+        this.$router.push('/')
+        return
+      }
+    },
+
     logout() {
       this.$store.dispatch("signOut");
     },

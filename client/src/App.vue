@@ -2,7 +2,13 @@
   <div id="app">
     <PageHeader/>
     <router-view/>
+
+        <b-modal no-close-on-backdrop centered ref="registerRef"
+        size="md" title="회원가입" hide-footer id="registerModal">
+    </b-modal>
+
     </div>
+    
 </template>
 
 <script>
