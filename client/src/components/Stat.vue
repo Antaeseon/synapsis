@@ -17,13 +17,13 @@
                 <b-col cols="8">
                     <b-row class="border border-info w-50 ">
                         <b-col cols="5">
-                            <p class="text-left ">8</p>
+                            <p class="text-left ">Win : 8</p>
                         </b-col>
                         <b-col cols="5">
-                            <p class="text-right">9</p>
+                            <p class="text-right">Lose : 9</p>
                         </b-col>
                         <b-col cols="2" class="border black">
-                            dd
+                            54%
                         </b-col>    
                     </b-row>
                 
