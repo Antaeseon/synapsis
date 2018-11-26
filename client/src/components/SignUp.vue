@@ -53,7 +53,14 @@
     <b-button to="/" class="inputButton" variant="primary">home</b-button>
     <b-button class="inputButton" variant="primary"  @click="test">testbutton</b-button>
 
+
+    
+
+
+
   </div>
+
+  
 </template>
 
 <script>
