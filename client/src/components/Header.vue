@@ -82,6 +82,8 @@ export default {
 
     logout() {
       this.$store.dispatch("signOut");
+      this.$router.push('/')
+
     },
     clearName() {
       this.id = "";
