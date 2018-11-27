@@ -130,9 +130,9 @@ b-button {
   border: 1mm black;
 }
 
-.form-control {
+/* .form-control {
   width: 200px;
-}
+} */
 
 #app {
   margin-top: 10px;

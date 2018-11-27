@@ -32,7 +32,7 @@ export default new Router({
       component: Postpage
     },
     {
-      path: '/postpage/wirte',
+      path: '/postpage/write',
       name: 'write',
       component: Write
     },

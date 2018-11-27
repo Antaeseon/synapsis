@@ -18,7 +18,7 @@
         <b-row>
             <b-col cols="9"/>
             <b-col cols="2">
-                <b-button id = "write_board"  size = "sm" class ="mr-30">글쓰기</b-button>
+              <b-button id = "write_board"  size = "sm" class ="mr-30" to='/postpage/write'>글쓰기</b-button>
             </b-col>
         </b-row>
         <div id = "board_main">
@@ -79,7 +79,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h2{
+h4{
     margin-top: 30px;
 }
  #board_main {
