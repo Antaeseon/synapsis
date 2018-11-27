@@ -22,7 +22,7 @@
 
             </div>
             <hr>
-            <b-button class="float-center" type="submit" variant="primary">용병 등록</b-button>
+            <b-button class="float-center" type="submit" variant="primary">전적 등록</b-button>
         </b-form>
     </div>
 </template>
