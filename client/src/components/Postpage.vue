@@ -4,10 +4,10 @@
     <div class="searchFunction">
       <b-row align-h="center" class="m-3"> 
         <b-col cols="1.5">
-           <b-form-select v-model="selected" :options="options" class="mb-3" />
+           <b-form-select :options="options" class="mb-3" />
         </b-col>
         <b-col cols="6">
-          <b-form-input id="searchBar" v-model="text1" type="text" placeholder="Search"/>
+          <b-form-input id="searchBar" v-model="searchText" type="text" placeholder="Search"/>
         </b-col>
         <b-col cols="1.5">
           <b-button id="searchButton" type="submit">Search</b-button>
@@ -62,7 +62,9 @@ export default {
     return {
       currentPage : 1,
       searchText:'',
-      boards: [],
+      boards: [
+        {id:1,writer:"dd",title:"dfasdf",date:33,cnt:1}
+      ],
       options: [
         { text: '전체' },
         { text: '제목' },
