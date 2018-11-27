@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const Post = new Schema({
-    id: {type :Number, required : true},
+    //id: {type :Number, required : true},
     user_id: {type :String, required: true},
     title: {type :String,default:null, required: true},
     context: {type :String, default: null, required: true},
@@ -14,7 +14,8 @@ Post.statics.create = function(user_id, title, context) {
     const user = new this({
         user_id,
         title,
-        context
+        context,
+        date = '2018-11-27'
     })
 
     // return the Promise
@@ -24,7 +25,7 @@ Post.statics.create = function(user_id, title, context) {
 Post.statics.findOneById = function(user_id) {
     return this.findOne({
         user_id
-    }).exec()
+    })
   }
 
 // Post.statics.findOneByTeam = function(teamName){
