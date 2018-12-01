@@ -17,19 +17,19 @@
                 <b-col cols="8">
                     <b-row class="border border-info w-50 ">
                         <b-col cols="5" class="bg-primary text-white">
-                            <p class="text-left ">Win : 8</p>
+                            <p class="text-left ">Win : {{myTeamInfo.win}}</p>
                         </b-col>
                         <b-col cols="5" class="bg-dark text-white">
-                            <p class="text-right">Lose : 9</p>
+                            <p class="text-right">Lose : {{myTeamInfo.lose}}</p>
                         </b-col>
                         <b-col cols="2" class="border black">
-                            54%
+                            {{percent}}%
                         </b-col>    
                     </b-row>
                 
                     <b-row class="border border-info w-50 mt-1">
                         <b-col cols="6">
-                            <p class="text-left">1300 points</p>
+                            <p class="text-left">{{myTeamInfo.score}} points</p>
                         </b-col>
                         <b-col cols="6">
                             <p class="text-left">45위</p>
@@ -49,10 +49,34 @@
 
 <script>
 import mercenary from './modal/mercenary'
+import config from "../../config/config"
+
 export default {
     data(){
         return{
-            items:["dd","aa"]
+            items:["dd","aa"],
+            myTeamInfo:{}
+        }
+    },
+    async created (){
+        let user=await this.$http.post(`${config.uri}/users/getUserInfo`,{id:this.$store.getters.id})
+        user=user.data
+        console.log(user.teamName)
+        let team=await this.$http.post(`${config.uri}/users/getTeamInfo`,{teamName:user.teamName})
+        console.log(team)
+        if(team){
+            this.myTeamInfo=team.data
+        }else{
+
+        }
+    },
+    computed:{
+        percent(){
+            if(this.myTeamInfo.win+this.myTeamInfo.lose==0){
+                return 0
+            }else{
+                return this.myTeamInfo.win/(this.myTeamInfo.win+this.myTeamInfo.lose)
+            }
         }
     },
     components:{
