@@ -28,7 +28,7 @@
 
 <script>
 import Datepicker from "vuejs-datepicker";
-
+import config from "../../../config/config"
 export default {
   data() {
     return {
@@ -53,10 +53,34 @@ export default {
     };
   },
   methods: {
-    onRegister(event) {
+    async onRegister(event) {
       event.preventDefault(); //prevent reload page
-      console.log(this.daten,)
+
+      const myteam=await this.$http.post(`${config.uri}/users/getUserInfo`,{id:this.$store.getters.id})
+      console.log('내팀',myteam.data.teamName)
+      let cntTeam=await this.$http.post(`${config.uri}/users/getTeamInfo`,{teamName:this.counterTeam})
+      cntTeam=cntTeam.data
+      console.log("상대팀",cntTeam)
+      if(!cntTeam)
+      {
+        alert("상대팀이 존재하지 않습니다.")
+        return
+      }
+
+
+      try{
+      this.$http.post(`${config.uri}/score/createScore`,{
+        team1:myteam.data.teamName,
+        team2:this.counterTeam,
+        team1_score:this.ourScore,
+        team2_score:this.counterScore,
+        date:this.date
+      })
       this.clear();
+      }
+      catch(error){
+        consol.log("이거",error.response.data)
+      }
     },
     clear() {
       this.counterTeam= "",

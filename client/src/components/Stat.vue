@@ -43,7 +43,6 @@
         <ul class="list-group w-50 mx-auto">
             <li class="list-group-item list-group-item-info m-1" v-for="item in items">{{item}}</li>
         </ul>
-
     </div>            
 </template>
 
@@ -67,7 +66,7 @@ export default {
         if(team){
             this.myTeamInfo=team.data
         }else{
-
+            
         }
     },
     computed:{
