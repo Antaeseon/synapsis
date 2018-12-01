@@ -3,7 +3,7 @@
         <b-form @submit="onRegister" class="m-1 mt-20">
             <div class="d-flex flex-row mb-3">
                 <label class="pt-2">상태팀명</label>
-                <b-form-input v-model="email" type="text" required
+                <b-form-input v-model="counterTeam" type="text" required
                         placeholder="ex) 상연짱짱맨"></b-form-input>
             </div>
             <hr>
@@ -14,7 +14,6 @@
             <hr>
             <div class="d-flex flex-row mb-3">
                 <label class="pt-2">스코어</label>
-
                 <label class="pt-2">우리팀</label>
                 <b-form-select v-model="ourScore" :options="options" class="mb-3 pt-2" required/>
                 <label class="pt-2">상대팀</label>
@@ -33,7 +32,7 @@ import Datepicker from "vuejs-datepicker";
 export default {
   data() {
     return {
-      email: "",
+      counterTeam: "",
       date: null,
       ourScore: null,
       counterScore: null,
@@ -56,13 +55,14 @@ export default {
   methods: {
     onRegister(event) {
       event.preventDefault(); //prevent reload page
+      console.log(this.daten,)
       this.clear();
     },
     clear() {
-      _.forEach(this.form, (value, key) => {
-        this.form[key] = "";
-      });
-      this.pwCheckText = "";
+      this.counterTeam= "",
+      this.date= null,
+      this.ourScore= null,
+      this.counterScore= null
     }
   },
   components: {

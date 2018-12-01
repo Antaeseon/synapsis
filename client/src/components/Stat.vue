@@ -27,7 +27,7 @@
                         </b-col>    
                     </b-row>
                 
-                    <b-row class="border border-info w-75 mt-1">
+                    <b-row class="border border-info w-50 mt-1">
                         <b-col cols="6">
                             <p class="text-left">1300 points</p>
                         </b-col>

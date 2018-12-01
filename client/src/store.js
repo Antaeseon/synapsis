@@ -7,8 +7,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state: {
-        id: localStorage.getItem('id'),
-        Token:localStorage.getItem('Token')
+        id: sessionStorage.getItem('id'),
+        Token:sessionStorage.getItem('Token')
     },
     getters: {
         id: state => state.id,
@@ -18,8 +18,8 @@ export default new Vuex.Store({
         login (state, { id, Token }) {
             state.id = id
             state.Token = Token
-            localStorage.setItem('Token',Token)
-            localStorage.setItem('id',id)
+            sessionStorage.setItem('Token',Token)
+            sessionStorage.setItem('id',id)
         },
         signOut (state) {
             state.Token = null

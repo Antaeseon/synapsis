@@ -34,7 +34,7 @@ Team.statics.findOneByTeamName = function(team_name) {
     return this.findOne({
         team_name
     }).exec()
-  }
+}
 
 //   Team.statics.findOneByTeam = function(teamName){
 //     return this.findOne({
@@ -47,12 +47,10 @@ Team.statics.findOneByTeamName = function(team_name) {
 //     return this.password == password
 //   }
 
-
 //   Team.methods.assignAdmin = function() {
 //     this.admin = true
 //     return this.save()
 // }
-
 
 
 module.exports = mongoose.model('Team', Team)
