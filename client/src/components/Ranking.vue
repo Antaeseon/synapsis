@@ -56,9 +56,7 @@ export default {
         async created () {
         await axios.get(`http://localhost:3000/ranking`)
         .then(response => {
-           
             this.teams = response.data;
-            alert(response.data);
             })
         .catch(e => {
         this.errors.push(e) 
@@ -73,9 +71,7 @@ export default {
 </script>
 
 <style>
-ul{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
-}
+@import url(http://fonts.googleapis.com/css?family=Roboto);
 .listFrame1{
     position: relative;
     top : 45px;
@@ -88,6 +84,7 @@ ul{
     font-size :20px;
     text-align: left;
     color: aliceblue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     word-spacing: 65px;
 }
 .listFrame2{

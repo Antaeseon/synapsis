@@ -36,7 +36,7 @@
             <b-btn class="nav-link" variant="outline-primary" to="/" @click="checkAuth">팀 매칭</b-btn>
           </li>
            <li class="nav-item">
-            <b-btn class="nav-link" variant="outline-primary" to="/" >랭킹 정보</b-btn>
+            <b-btn class="nav-link" variant="outline-primary" to="/ranking" >랭킹 정보</b-btn>
           </li>
           <li class="nav-item">
             <b-btn class="nav-link" variant="outline-primary" to="/person" @click="checkAuth">용병 정보</b-btn>
