@@ -48,6 +48,4 @@ User.methods.assignAdmin = function() {
     return this.save()
 }
 
-
-
 module.exports = mongoose.model('User', User)

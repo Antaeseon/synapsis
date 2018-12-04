@@ -9,7 +9,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login')
 var registerRouter = require('./routes/register')
-
+var scoreRouter = require('./routes/score')
+var rankingRouter = require('./routes/ranking');
+var postingRouter = require('./routes/posting');
 
 const config = require('./config');
 
@@ -32,6 +34,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/register',registerRouter)
+app.use('/score',scoreRouter)
+app.use('/ranking', rankingRouter);
+app.use('/posting', postingRouter);
 
 // CONNECT TO MONGODB SERVER
 var db = mongoose.connection;

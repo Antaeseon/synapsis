@@ -17,7 +17,6 @@ router.post('/', function (req, res, next) {
     // create a new user if does not exist
     const create = async (user) => {
         console.log('팀 존재 유무', isTeamLeader)
-
         var team = await Team.findOneByTeamName(teamName)
         console.log(team)
         if (teamName == "") {
