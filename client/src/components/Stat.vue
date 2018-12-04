@@ -35,7 +35,7 @@
                             <p class="text-left">45위</p>
                         </b-col>
                     </b-row>
-                    
+
                 </b-col>
             </b-row>
         </div>

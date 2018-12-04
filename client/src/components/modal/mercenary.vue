@@ -36,7 +36,6 @@ export default {
       date: null,
       ourScore: null,
       counterScore: null,
-
       options: [
         { value: null, text: "score" },
         { value: "0", text: "0" },

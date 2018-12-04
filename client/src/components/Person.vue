@@ -1,6 +1,7 @@
+
 <template>
   <div id="board">
-    <h2 align-h="center">용병 구하기</h2>
+    <h4 align-h="center">용병 구하기</h4>
     <div class = "searchFunction">
       <b-row class="search">
         <b-col cols = "1.5">
@@ -18,44 +19,51 @@
       </b-row>
     </div>
     <div id = "board_main">
+      <b-row>
+        <b-col col="3">
+        <div id = "person">
+                <b-btn v-b-modal.myModal variant="primary" class="float-md-right col-2 ml-10">용병 신청하기</b-btn>
+                <b-modal no-close-on-backdrop centered id="myModal" size="md"  hide-footer title="용병 등록하기">
+                <personpop></personpop>
+                </b-modal>
+        </div>
+        </b-col>
+      </b-row>
       <b-container class="content_row">
-      <b-row class="text-center" align-h= "center">
-        <b-col >번호</b-col>
-        <b-col cols="5">제목</b-col>
-        <b-col>작성자</b-col>
-        <b-col cols="2">등록일</b-col>
-        <b-col>조회수</b-col>
-      </b-row>  
-      <hr>   
-      <div v-for="item in boards" v-bind:key="item.id">
-        <b-row class="text-center">
-          <b-col >{{item.id}}</b-col>
-          <b-col cols="5">
-            <router-link to = "/board/view">
-              <b-button id= "title_button">{{item.title}}</b-button>
-            </router-link>
-          </b-col>
-          <b-col>{{item.writer}}</b-col>
-          <b-col cols="2">{{item.date}}</b-col>
-          <b-col>{{item.cnt}}</b-col>
+        <b-row class="text-center" align-h= "center">
+          <b-col >번호</b-col>
+          <b-col cols="5">제목</b-col>
+          <b-col>작성자</b-col>
+          <b-col cols="2">등록일</b-col>
+          <b-col>조회수</b-col>
         </b-row>
         <hr>
-      </div>
-      <div id = "person">
-        <b-pagination-nav base-url="#" align = "center" :total-rows="10" :number-of-pages="10" v-model="currentPage" />
-            <router-link to = "">
-             <b-button id = "write_board"  size = "sm">글쓰기</b-button>
-            </router-link>
-        <br>
-        <div>currentPage: {{currentPage}}</div>
-      </div>
-      
+        <div v-for="item in boards" v-bind:key="item.id">
+          <b-row class="text-center">
+            <b-col >{{item.id}}</b-col>
+            <b-col cols="5">
+              <router-link to = "/board/view">
+                <b-button id= "title_button">{{item.title}}</b-button>
+              </router-link>
+            </b-col>
+            <b-col>{{item.writer}}</b-col>
+            <b-col cols="2">{{item.date}}</b-col>
+            <b-col>{{item.cnt}}</b-col>
+          </b-row>
+        <hr>
+        </div>
+         <div id = "paging">
+            <b-pagination-nav base-url="#" align = "center" :total-rows="10" :number-of-pages="10" v-model="currentPage" />
+         </div>
       </b-container>
     </div>
   </div>
 </template>
 
 <script>
+import personpop from './modal/personpop'
+
+
 export default {
   name: 'Board',
   data () {
@@ -70,41 +78,27 @@ export default {
         { text: '게시물 번호' }
       ]
     }
+
   },
-  created() {
-      this.$EventBus.$emit('removeTab' , true)
-       for(var i =0 ; i<20; i++){
-        this.boards.push({
-          id : i+1,
-          title: 'this is 제목용'+(i+1),
-          writer: '이아연'+(i+1),
-          date: '2018-11-'+i,
-          cnt : 20+i        
-        });
-      }
-  },
-  methods: {
-      /***************페이지마다 게시글 불러오기 처리*************/
-     
-        /******나중  axios 통신으로 불러오기  *****/
-         }
-  
+  components:{
+    personpop
   }
+
+}
+
 
 </script>
 
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h2{
+h4{
     margin-top: 30px;
 }
- #board_main {
-    margin-left: 300px;
-    margin-right:400px;
-
- }
- #write_board{
-   float: right;
+#board_main {
+  margin-top: 50px;
+  margin-left: 300px;
+  margin-right:400px;
  }
  #title_button{
    float: center;
@@ -117,7 +111,7 @@ h2{
     margin-top:50px;
     width:80%; height:100%;
     margin-bottom:50px;
- } 
+ }
  .search{
    width:70rem;
    margin-left:330px;
@@ -135,6 +129,8 @@ h2{
  #paging{
      margin-top: 500px;
  }
- 
-</style>
+ .content_row{
+   margin-top: 30px;
+ }
 
+</style>
