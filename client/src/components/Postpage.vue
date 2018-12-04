@@ -45,9 +45,9 @@
                 <b-button id= "title_button">{{item.title}}</b-button>
                 </router-link>
             </b-col>
-            <b-col>{{item.writer}}</b-col>
+            <b-col>{{item.user_id}}</b-col>
             <b-col cols="2">{{item.date}}</b-col>
-            <b-col>{{item.cnt}}</b-col>
+            <b-col>{{item.count}}</b-col>
             </b-row>
             <hr>
         </div>
@@ -62,14 +62,24 @@
 
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'Board',
+  async created(){
+    await axios.get('http://localhost:3000/posting')
+    .then(response=>{
+      this.boards = response.data;
+    })
+    .catch(e =>{
+      this.errors.push(e)
+    })
+  },
   data () {
     return {
       currentPage : 1,
       searchText:'',
       boards: [
-        {id:1,writer:"dd",title:"dfasdf",date:33,cnt:1}
+        //{id:1,writer:"dd",title:"dfasdf",date:33,cnt:1}
       ],
       options: [
         { text: '전체' },

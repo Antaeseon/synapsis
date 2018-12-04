@@ -4,8 +4,8 @@ const Schema = mongoose.Schema
 const Post = new Schema({
     //id: {type :Number, required : true},
     user_id: {type :String, required: true},
-    title: {type :String,default:null, required: true},
-    context: {type :String, default: null, required: true},
+    title: {type :String, required: true},
+    context: {type :String, required: true},
     date: {type :Date},
     count: {type :Number, default: 0}
 })
@@ -15,7 +15,7 @@ Post.statics.create = function(user_id, title, context) {
         user_id,
         title,
         context,
-        date = '2018-11-27'
+        date
     })
 
     // return the Promise
