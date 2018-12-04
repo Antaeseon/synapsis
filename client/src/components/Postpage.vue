@@ -1,26 +1,32 @@
 <template>
   <div id="board">
-    <h4 align-h="center" class="mt-50">게시판</h4>
-    <div class="searchFunction">
-      <b-row align-h="center" class="m-3"> 
-        <b-col cols="1.5">
-           <b-form-select :options="options" class="mb-3" />
+    <h4 align-h="center">게시판</h4>
+    <div class = "searchFunction">
+      <b-row class="search">
+        <b-col cols = "1.5">
+          <div>
+              <b-form-select v-model="selected" :options="options" class="mb-3" size = "sm" />
+          </div>
         </b-col>
-        <b-col cols="6">
-          <b-form-input id="searchBar" v-model="searchText" type="text" placeholder="Search"/>
+        <b-col cols = "7">
+          <b-form-input v-model="searchText" type="text" placeholder="Search" size = "sm" id="searchBar" >
+          </b-form-input>
         </b-col>
-        <b-col cols="1.5">
-          <b-button id="searchButton" type="submit">Search</b-button>
+        <b-col cols = "3">
+          <b-button id="searchButton" type="submit" size = "sm" >Search</b-button>
+        </b-col>
+        <b-col cols = "3">
+          <b-button id = "write_board"  size = "sm" class ="mr-30" to='/postpage/write'>글쓰기</b-button>
         </b-col>
       </b-row>
     </div>
     <div id="board">
-        <b-row>
+        <!-- <b-row>
             <b-col cols="9"/>
             <b-col cols="2">
               <b-button id = "write_board"  size = "sm" class ="mr-30" to='/postpage/write'>글쓰기</b-button>
             </b-col>
-        </b-row>
+        </b-row> -->
         <div id = "board_main">
         <b-container class="content_row">
         <b-row class="text-center" align-h= "center">
@@ -97,6 +103,16 @@ h4{
  }
  .content_row {
    width:70rem;
+ }
+ .searchFunction{
+    margin-top:50px;
+    width:80%; height:100%;
+    margin-bottom:50px;
+ }
+ .search{
+   width:70rem;
+   margin-left:330px;
+   padding-right:30px;
  }
  hr{
    width:70rem;
