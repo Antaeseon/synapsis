@@ -9,6 +9,9 @@ import store from './store'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 
+import VModal from 'vue-js-modal'
+Vue.use(VModal, { dynamic: true })
+
 Vue.use(BootstrapVue)
 Vue.prototype.$http=axios
 Vue.config.productionTip = false

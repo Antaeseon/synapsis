@@ -24,9 +24,9 @@
                         </b-col>
                         <b-col cols="2" class="border black">
                             54%
-                        </b-col>    
+                        </b-col>
                     </b-row>
-                
+
                     <b-row class="border border-info w-75 mt-1">
                         <b-col cols="6">
                             <p class="text-left">1300 points</p>
@@ -35,7 +35,7 @@
                             <p class="text-left">45위</p>
                         </b-col>
                     </b-row>
-                    
+
                 </b-col>
             </b-row>
         </div>
@@ -44,7 +44,7 @@
             <li class="list-group-item list-group-item-info m-1" v-for="item in items">{{item}}</li>
         </ul>
 
-    </div>            
+    </div>
 </template>
 
 <script>
@@ -52,7 +52,7 @@ import mercenary from './modal/mercenary'
 export default {
     data(){
         return{
-            items:["dd","aa"]
+            items:["dd","aa","ss"]
         }
     },
     components:{
