@@ -10,6 +10,16 @@ const checkScore = new Schema({
     isAdmit:{type : Boolean,default:false},
 })
 
+checkScore.statics.findByTeamName = function(teamName) {
+    console.log('들어옴',teamName)
+    return this.find({
+        team2:teamName
+    }).exec()
+  }
+
+
+
+
 // User.statics.create = function(id, password,teamName,sportsCategory,position,isTeamLeader) {
 //     const user = new this({
 //         id,
@@ -24,11 +34,6 @@ const checkScore = new Schema({
 //     return user.save()
 // }
 
-// User.statics.findOneById = function(id) {
-//     return this.findOne({
-//         id
-//     }).exec()
-//   }
 
 // User.statics.findOneByTeam = function(teamName){
 //     return this.findOne({

@@ -1,11 +1,19 @@
 <template>
     <div class="statC">
         <div>
-            <b-btn v-b-modal.myModal variant="primary" class="float-md-right col-2 ml-10">전적 등록</b-btn>
-                <b-modal no-close-on-backdrop centered id="myModal"
-                    size="md"  hide-footer title="전적 등록">
-                <mercenary></mercenary>
-                </b-modal>
+
+            <b-btn v-b-modal.myCheck variant="primary" class="float-md-right col-2 ml-10">전적 확인</b-btn>
+                <b-modal no-close-on-backdrop centered id="myCheck"
+                    size="md"  hide-footer title="전적 확인">
+                    <check></check>
+                    </b-modal>
+
+                <b-btn v-b-modal.myModal variant="primary" class="float-md-right col-2 ml-10">전적 등록</b-btn>
+                    <b-modal no-close-on-backdrop centered id="myModal"
+                        size="md"  hide-footer title="전적 등록">
+                    <mercenary></mercenary>
+                    </b-modal>
+
         </div>
         <br>
         <div class="border border-secondary mt-4">
@@ -48,6 +56,7 @@
 
 <script>
 import mercenary from './modal/mercenary'
+import check from './modal/checkScore'
 import config from "../../config/config"
 
 export default {
@@ -62,7 +71,7 @@ export default {
         user=user.data
         console.log(user.teamName)
         let team=await this.$http.post(`${config.uri}/users/getTeamInfo`,{teamName:user.teamName})
-        console.log(team)
+        // console.log(team)
         if(team){
             this.myTeamInfo=team.data
         }else{
@@ -79,7 +88,8 @@ export default {
         }
     },
     components:{
-        mercenary
+        mercenary,
+        check
     }
 }
 </script>
