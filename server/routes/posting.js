@@ -21,6 +21,7 @@ router.post("/register", function(req, res) {
   post.title = req.body.title;
   post.context = req.body.content;
   post.user_id = req.body.user_id;
+  post.date = Date.now();
 
   post.save(function(err) {
     if (err) {
