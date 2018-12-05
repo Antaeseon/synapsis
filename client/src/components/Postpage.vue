@@ -30,13 +30,11 @@
               <b-col>조회수</b-col>
           </b-row>  
           <hr>   
-          <div v-for="(item,index) in boards" v-bind:key="item.id"> 
+          <div v-for="item in boards" v-bind:key="item.id"> 
             <b-row class="text-center">
-              <b-col >{{index+1}}</b-col>
+              <b-col >{{item.index}}</b-col>
               <b-col cols="5">
-                  <router-link to = "/board/view">
-                    <b-button id= "title_button">{{item.title}}</b-button>
-                  </router-link>
+                  <router-link :to="{name: 'board',params:{idx: item.index}}"> {{item.title}} </router-link>
               </b-col>
               <b-col>{{item.user_id}}</b-col>
               <b-col cols="2">{{item.date}}</b-col>

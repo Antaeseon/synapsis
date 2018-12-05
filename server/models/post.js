@@ -6,23 +6,15 @@ autoIncrement.initialize(mongoose.connection)
 
 
 const Post = new Schema({
-<<<<<<< HEAD
     //id: {type :Number, required : true},
     index: {
          type: Number,
          unique: true
     },
-    user_id: {type :String ,required : true},
-    title: {type :String  , required : true},
+    user_id: {type :String },
+    title: {type :String },
     context: {type :String},
     date: {type :Date},
-=======
-    index : {type :Number},
-    user_id: {type :String, required: true},
-    title: {type :String, required: true},
-    context: {type :String, required: true},
-    date: {type :Date, default: Date.now},
->>>>>>> hansol
     count: {type :Number, default: 0}
 })
 

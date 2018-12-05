@@ -38,6 +38,7 @@ app.use('/score',scoreRouter)
 app.use('/ranking', rankingRouter);
 app.use('/posting', postingRouter);
 
+
 // CONNECT TO MONGODB SERVER
 var db = mongoose.connection;
 db.on('error', console.error);

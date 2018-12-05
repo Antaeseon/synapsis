@@ -5,6 +5,7 @@ import config from '../config/config'
 
 Vue.use(Vuex)
 
+
 export default new Vuex.Store({
     state: {
         id: sessionStorage.getItem('id'),

@@ -41,7 +41,7 @@
         </div>
         <hr>
         <ul class="list-group w-50 mx-auto">
-            <li class="list-group-item list-group-item-info m-1" v-for="item in items">{{item}}</li>
+            <li class="list-group-item list-group-item-info m-1" v-for="item in items" :key="item.id">{{item}}</li>
         </ul>
     </div>            
 </template>

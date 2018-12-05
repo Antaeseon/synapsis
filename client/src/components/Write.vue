@@ -1,6 +1,7 @@
 <template>
-  <div id='write' v-on:submit="addPost">
+  <div>
     <h4>새로운 게시글 작성하기</h4>
+    <form id="write" @submit="sendPost">
       <b-container class = "textarea1">
       <b-row align-h="center">
         <b-col sm="1"><label for="post-title">제목:</label></b-col>
@@ -13,16 +14,20 @@
       <b-row align-h="center">
         <b-col sm="1"><label for="post-text">내용:</label></b-col>
         <b-col sm="11">
-        <b-form-textarea id="post-text" v-model="context" placeholder="Enter context" :rows="20" :max-rows="20"></b-form-textarea>
+        <b-form-textarea id="post-text" v-model="context"  type="text" placeholder="Enter context" :rows="20" :max-rows="20"></b-form-textarea>
         </b-col>
       </b-row>
     </b-container>
-    <b-button id="submit">등록</b-button>
+    <button >등록</button>
+    </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
+  
   data () {
     return {
       title: '',
@@ -30,8 +35,20 @@ export default {
     }
   },
   methods: {
-    addPost(){
-      axios.post("http://localhost:3000/posting/register", {'user_id': user_id, 'title': this.title, 'context': this.context, 'date': Date.now, 'count': 0})
+    sendPost(){
+      axios.post(`http://localhost:3000/posting/register`, {
+        context: this.context,
+        title: this.title,
+        user_id: this.$store.getters.id
+        }).then(response =>{
+            if(response.data){
+              console.log(response);
+              alert('저장 성공!')
+            }
+            else{
+              alert('저장 실패!')
+            }
+          })
     }
   }
 }
