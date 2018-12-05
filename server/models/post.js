@@ -6,6 +6,7 @@ autoIncrement.initialize(mongoose.connection)
 
 
 const Post = new Schema({
+<<<<<<< HEAD
     //id: {type :Number, required : true},
     index: {
          type: Number,
@@ -15,6 +16,13 @@ const Post = new Schema({
     title: {type :String  , required : true},
     context: {type :String},
     date: {type :Date},
+=======
+    index : {type :Number},
+    user_id: {type :String, required: true},
+    title: {type :String, required: true},
+    context: {type :String, required: true},
+    date: {type :Date, default: Date.now},
+>>>>>>> hansol
     count: {type :Number, default: 0}
 })
 
@@ -41,7 +49,8 @@ Post.statics.findOneById = function(user_id) {
     return this.findOne({
         user_id
     })
-  }
+}
+
 
 // Post.statics.findOneByTeam = function(teamName){
 //     return this.findOne({
