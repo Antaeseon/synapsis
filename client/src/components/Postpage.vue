@@ -37,6 +37,7 @@
                 <router-link to = "/board/view">
                   <b-button id= "title_button">{{item.title}}</b-button>
                 </router-link>
+                  <router-link :to="{name: 'board',params:{idx: item.index}}"> {{item.title}} </router-link>
               </b-col>
             <b-col>{{item.user_id}}</b-col>
             <b-col cols="3">{{item.date}}</b-col>
