@@ -60,7 +60,7 @@ export default {
       this.myteam=myteam.data.teamName
       const Cteam=await this.$http.post(`${config.uri}/getMatch`,{teamName:this.myteam})
       this.myList=Cteam.data
-      console.log('마운티드',this.myList[0])
+      console.log('마운티드',this.myList)
   },
   methods: {
     async onRegister(event) {
