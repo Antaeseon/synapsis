@@ -1,14 +1,29 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+// Auto Increment 플러그인
+const autoIncrement = require('mongoose-auto-increment');
+autoIncrement.initialize(mongoose.connection)
+
 
 const Post = new Schema({
-    index : {type :Number},
-    user_id: {type :String, required: true},
-    title: {type :String, required: true},
-    context: {type :String, required: true},
-    date: {type :Date, default: Date.now},
+    //id: {type :Number, required : true},
+    index: {
+         type: Number,
+         unique: true
+    },
+    user_id: {type :String },
+    title: {type :String },
+    context: {type :String},
+    date: {type :Date},
     count: {type :Number, default: 0}
 })
+
+// 인덱스 자동으로 1씩 증가되도록..
+Post.plugin(autoIncrement.plugin, {
+    model: "Post",
+    field: "index",
+    startAt: 1
+});
 
 Post.statics.create = function(user_id, title, context) {
     const user = new this({

@@ -33,6 +33,7 @@
           <b-row class="text-center">
             <b-col >{{index+1}}</b-col>
               <b-col cols="5">
+                  <router-link :to="{name: 'board',params:{idx: item.index}}"> {{item.title}} </router-link>
                 <router-link to = "/board/view">
                   <b-button id= "title_button">{{item.title}}</b-button>
                 </router-link>
