@@ -41,7 +41,7 @@
               <p class="text-left">{{myTeamInfo.score}} points</p>
             </b-col>
             <b-col cols="6">
-              <p class="text-left">45위</p>
+              <p class="text-left">{{tier}}</p>
             </b-col>
           </b-row>
         </b-col>
@@ -50,8 +50,8 @@
     <hr>
     <br>
     <div id="align">
-        <button v-for="match in myTeamInfo" :key="match.id" class="card-container">
-          <match-card :match="match" style></match-card>
+        <button v-for="match in matchList" :key="match.id"  class="card-container btn-outline-secondary" disabled >
+          <match-card :match="match"></match-card>
         </button>
     </div>
 
@@ -72,8 +72,10 @@ import matchCard from "./card/matchCard";
 export default {
   data() {
     return {
+      user:{},
       items: ["dd", "aa"],
-      myTeamInfo: {}
+      myTeamInfo: {},
+      matchList:{}
     };
   },
   async created() {
@@ -81,14 +83,20 @@ export default {
       id: this.$store.getters.id
     });
     user = user.data;
-    console.log(user.teamName);
+    this.user=user
+    console.log('스코어',user);
     let team = await this.$http.post(`${config.uri}/users/getTeamInfo`, {
       teamName: user.teamName
     });
+    let score= await this.$http.post(`${config.uri}/score/getAllScore`,{
+      teamName:user.teamName
+    })
     // console.log(team)
     if (team) {
-      this.myTeamInfo = team.data;
+      this.myTeamInfo = team.data
+      this.matchList=score.data
     } else {
+        
     }
   },
   computed: {
@@ -99,6 +107,13 @@ export default {
         return (
           this.myTeamInfo.win / (this.myTeamInfo.win + this.myTeamInfo.lose)
         );
+      }
+    },
+    tier(){
+      if(this.user.score<500){
+        return 'bronze'
+      }else{
+        return 'none'
       }
     }
   },
@@ -125,7 +140,7 @@ export default {
     margin-right: 2%;
 }
 .card-container{
-    width:25%;
-    margin: 2%;
+    width:20%;
+    margin: 1%;
 }
 </style>
