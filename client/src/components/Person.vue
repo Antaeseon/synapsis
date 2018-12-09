@@ -95,8 +95,7 @@ h4{
 }
 #board_main {
   margin-top: 50px;
-  margin-left: 300px;
-  margin-right:400px;
+  margin-right:100px;
  }
  #title_button{
    float: center;

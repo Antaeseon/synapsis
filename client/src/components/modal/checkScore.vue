@@ -35,6 +35,9 @@ export default {
       date: null,
       ourScore: null,
       counterScore: null,
+      aaa:null,
+      myteam:null,
+      myList:{},
       options: [
         { value: null, text: "score" },
         { value: "0", text: "0" },
@@ -49,6 +52,15 @@ export default {
         { value: "9", text: "9" }
       ]
     };
+  },
+  async created(){
+      console.log('이이1')
+      const myteam=await this.$http.post(`${config.uri}/users/getUserInfo`,{id:this.$store.getters.id})
+      console.log('이이2')
+      this.myteam=myteam.data.teamName
+      const Cteam=await this.$http.post(`${config.uri}/getMatch`,{teamName:this.myteam})
+      this.myList=Cteam.data
+      console.log('마운티드',this.myList)
   },
   methods: {
     async onRegister(event) {

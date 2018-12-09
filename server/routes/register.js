@@ -3,7 +3,6 @@ const router = express.Router();
 const User = require('../models/user');
 const Team = require('../models/team')
 router.post('/', function (req, res, next) {
-
     let {
         id,
         password,
