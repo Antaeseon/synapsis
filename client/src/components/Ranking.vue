@@ -138,9 +138,7 @@ h3{ /*랭킹*/
     text-align: left;
     font-size: 50px;
 }
-h4{ /*서치*/
-    text-align: right;
-}
+
 .GoldMedalFrame{
     border : 2px solid black;
     width : 100%;
