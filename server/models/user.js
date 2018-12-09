@@ -8,6 +8,7 @@ const User = new Schema({
     sportsCategory:{type :String, required : true},
     position:{type :String,default:'Allround'},
     isTeamLeader:{type : Boolean,required:true},
+    score:{type : Number, default:1000},
     admin: { type: Boolean, default: false }
 })
 
