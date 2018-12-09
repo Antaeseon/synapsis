@@ -33,7 +33,7 @@
             <b-btn class="nav-link" variant="outline-primary" to="/stat"  @click="checkAuth"> 내 팀 전적보기</b-btn>
           </li>
           <li class="nav-item">
-            <b-btn class="nav-link" variant="outline-primary" to="/" @click="checkAuth">팀 매칭</b-btn>
+            <b-btn class="nav-link" variant="outline-primary" to="/match" @click="checkAuth">팀 매칭</b-btn>
           </li>
            <li class="nav-item">
             <b-btn class="nav-link" variant="outline-primary" to="/" >랭킹 정보</b-btn>

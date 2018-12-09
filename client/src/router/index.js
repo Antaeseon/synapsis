@@ -6,6 +6,7 @@ import Stat from '@/components/Stat'
 import Postpage from '@/components/Postpage'
 import Write from '@/components/Write'
 import Person from '@/components/Person'
+import TeamMatcihng from '@/components/TeamMatching'
 
 Vue.use(Router)
 
@@ -40,6 +41,11 @@ export default new Router({
       path: '/person',
       name: 'person',
       component: Person
+    },
+    {
+      path: '/match',
+      name: 'TeamMatcihng',
+      component: TeamMatcihng
     }
   ]
 })

@@ -1,6 +1,11 @@
 <template>
   <div>
-    <div v-for="list in myList" :key="list._id" v-show="list.isAdmit==0" style="margin-bottom: 10px;">
+    <div
+      v-for="list in myList"
+      :key="list._id"
+      v-show="list.isAdmit==0"
+      style="margin-bottom: 10px;"
+    >
       <div class="buyer-card row-align">
         <p class="row-item" style="width: 85%;">
           {{list.team1}} : {{list.team1_score}} vs {{list.team2}} : {{list.team2_score}}
@@ -101,12 +106,18 @@ export default {
         (this.ourScore = null),
         (this.counterScore = null);
     },
-    async accept(id){
-      console.log(id)
-      this.$http.post(`${config.uri}/score/acceptScore`,{
-        id : id
-      })
-      this.$router.go()
+    async accept(id) {
+      console.log(id);
+      this.$http.post(`${config.uri}/score/acceptScore`, {
+        id: id
+      });
+      this.$router.go();
+    },
+    async cancel(id) {
+      this.$http.post(`${config.uri}/score/cancelScore`, {
+        id: id
+      });
+      this.$router.go();
     }
   },
   components: {
