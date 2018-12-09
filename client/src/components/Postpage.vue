@@ -103,11 +103,6 @@ h4{
  .content_row {
    width:70rem;
  }
- /* .searchFunction{
-    margin-top:50px;
-    width:80%; height:100%;
-    margin-bottom:50px;
- } */
 .search{
     margin-top : 50px;
  }
