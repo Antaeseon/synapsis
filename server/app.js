@@ -12,7 +12,7 @@ var registerRouter = require('./routes/register')
 var scoreRouter = require('./routes/score')
 var rankingRouter = require('./routes/ranking');
 var postingRouter = require('./routes/posting');
-
+var personRouter = require('./routes/person')
 const config = require('./config');
 
 
@@ -37,6 +37,7 @@ app.use('/register',registerRouter)
 app.use('/score',scoreRouter)
 app.use('/ranking', rankingRouter);
 app.use('/posting', postingRouter);
+app.use('/person',personRouter);
 
 
 // CONNECT TO MONGODB SERVER
@@ -48,10 +49,7 @@ db.once('open', function(){
 });
 
 
-
-
 mongoose.connect(config.mongodbUri,{ useNewUrlParser: true })
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
