@@ -7,6 +7,7 @@ import Postpage from '@/components/Postpage'
 import Write from '@/components/Write'
 import Person from '@/components/Person'
 import Ranking from '@/components/Ranking'
+import Board from '@/components/Board'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/ranking',
       name: 'ranking',
       component: Ranking
+    },
+    {
+      path: '/board/:idx',
+      name:'board',
+      component: Board
     }
   ]
 })

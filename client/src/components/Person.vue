@@ -1,20 +1,19 @@
-
 <template>
   <div id="board">
     <h4 align-h="center">용병 구하기</h4>
     <div class = "searchFunction">
       <b-row class="search">
-        <b-col cols = "1.5">
-          <div>
-              <b-form-select v-model="selected" :options="options" class="mb-3" size = "sm" />
-          </div>
+        <b-col>
+          <b-form-select v-model="selected" :options="options" class="mb-3" size = "sm" />
         </b-col>
         <b-col>
-          <b-form-input v-model="searchText" type="text" placeholder="Search" size = "sm" id="searchBar" >
-          </b-form-input>
+          <b-form-input v-model="searchText" type="text" placeholder="Search" size = "sm" id="searchBar" />
         </b-col>
         <b-col>
           <b-button id="searchButton" type="submit" size = "sm" >Search</b-button>
+        </b-col>
+        <b-col>
+          <b-btn v-b-modal.myModal variant="primary" size="sm">용병 신청하기</b-btn>
         </b-col>
       </b-row>
     </div>
@@ -22,10 +21,9 @@
       <b-row>
         <b-col col="3">
         <div id = "person">
-                <b-btn v-b-modal.myModal variant="primary" class="float-md-right col-2 ml-10">용병 신청하기</b-btn>
-                <b-modal no-close-on-backdrop centered id="myModal" size="md"  hide-footer title="용병 등록하기">
-                <personpop></personpop>
-                </b-modal>
+          <b-modal no-close-on-backdrop centered id="myModal" size="md"  hide-footer title="용병 등록하기">
+          <personpop></personpop>
+          </b-modal>
         </div>
         </b-col>
       </b-row>
@@ -52,9 +50,9 @@
           </b-row>
         <hr>
         </div>
-         <div id = "paging">
-            <b-pagination-nav base-url="#" align = "center" :total-rows="10" :number-of-pages="10" v-model="currentPage" />
-         </div>
+        <div id = "paging">
+          <b-pagination-nav base-url="#" align = "center" :total-rows="10" :number-of-pages="10" v-model="currentPage" />
+        </div>
       </b-container>
     </div>
   </div>
@@ -97,8 +95,7 @@ h4{
 }
 #board_main {
   margin-top: 50px;
-  margin-left: 300px;
-  margin-right:400px;
+  margin-right:100px;
  }
  #title_button{
    float: center;
@@ -107,7 +104,7 @@ h4{
    border:0;
    outline:0;
  }
- .searchFunction{
+ /* .searchFunction{
     margin-top:50px;
     width:80%; height:100%;
     margin-bottom:50px;
@@ -116,21 +113,17 @@ h4{
    width:70rem;
    margin-left:330px;
    padding-right:30px;
- }
+ } */
  .content_row {
    width:70rem;
  }
- #searchBar{
+ /* #searchBar{
    width:40rem;
- }
+ } */
  hr{
    width:70rem;
  }
  #paging{
      margin-top: 500px;
  }
- .content_row{
-   margin-top: 30px;
- }
-
 </style>
