@@ -45,6 +45,7 @@
           <b-col>번호</b-col>
           <b-col cols="5">날짜</b-col>
           <b-col>스포츠타입</b-col>
+          <b-col>계약상태</b-col>
         </b-row>
         <hr>
         <div v-for="item in boards" v-bind:key="item.id">
