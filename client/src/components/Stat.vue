@@ -48,7 +48,7 @@
     <hr>
     <br>
     <div id="align">
-        <button v-for="match in matchList" :key="match.id"  class="card-container btn-outline-secondary" disabled >
+        <button v-for="match in matchList" :key="match.id" v-show="match.isAdmit==1" class="card-container btn-outline-secondary" disabled >
           <match-card :match="match"></match-card>
         </button>
     </div>
@@ -102,7 +102,7 @@ export default {
         return 0;
       } else {
         return (
-          this.myTeamInfo.win / (this.myTeamInfo.win + this.myTeamInfo.lose)
+          (this.myTeamInfo.win / (this.myTeamInfo.win + this.myTeamInfo.lose))*100
         );
       }
     },

@@ -1,16 +1,22 @@
 <template>
   <div>
-    <div v-for="list in myList" :key="list._id" style="margin-bottom: 10px;">
+    <div v-for="list in myList" :key="list._id" v-show="list.isAdmit==0" style="margin-bottom: 10px;">
       <div class="buyer-card row-align">
         <p class="row-item" style="width: 85%;">
-          team1 : {{list.team1}} 
+          {{list.team1}} : {{list.team1_score}} vs {{list.team2}} : {{list.team2_score}}
           <button
-            @click="matchBuyer(list._id)"
-            class="round-btn blue row-item float-right"
+            @click="accept(list._id)"
+            class="round-btn blue row-item"
             style="width: 20%;"
           >Accept</button>
+          <button
+            @click="cancel(list._id)"
+            class="round-btn blue row-item"
+            style="width: 20%;"
+          >Cancel</button>
         </p>
       </div>
+      <hr>
     </div>
   </div>
 </template>
@@ -94,6 +100,13 @@ export default {
         (this.date = null),
         (this.ourScore = null),
         (this.counterScore = null);
+    },
+    async accept(id){
+      console.log(id)
+      this.$http.post(`${config.uri}/score/acceptScore`,{
+        id : id
+      })
+      this.$router.go()
     }
   },
   components: {
