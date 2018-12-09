@@ -19,35 +19,33 @@
         </b-row>
       </b-container>
     </div>
-    <div id = "board_main">
-      <b-container fluid class="content_row">
-        <b-row class="text-center" align-h= "center">
-            <b-col >번호</b-col>
-            <b-col cols="5">제목</b-col>
-            <b-col>작성자</b-col>
-            <b-col cols="3">등록일</b-col>
-            <b-col>조회수</b-col>
-        </b-row>  
-        <hr>   
-        <div v-for="(item,index) in boards" v-bind:key="item.id"> 
-          <b-row class="text-center">
-            <b-col >{{index+1}}</b-col>
+    <div id="board">
+      <div id = "board_main">
+        <b-container fluid class="content_row">
+          <b-row class="text-center" align-h= "center">
+              <b-col >번호</b-col>
+              <b-col cols="5">제목</b-col>
+              <b-col>작성자</b-col>
+              <b-col cols="2">등록일</b-col>
+              <b-col>조회수</b-col>
+          </b-row>  
+          <hr>   
+          <div v-for="item in boards" v-bind:key="item.id"> 
+            <b-row class="text-center">
+              <b-col >{{item.index}}</b-col>
               <b-col cols="5">
                   <router-link :to="{name: 'board',params:{idx: item.index}}"> {{item.title}} </router-link>
-                <router-link to = "/board/view">
-                  <b-button id= "title_button">{{item.title}}</b-button>
-                </router-link>
-                  <router-link :to="{name: 'board',params:{idx: item.index}}"> {{item.title}} </router-link>
               </b-col>
-            <b-col>{{item.user_id}}</b-col>
-            <b-col cols="3">{{item.date}}</b-col>
-            <b-col>{{item.count}}</b-col>
-          </b-row>
-          <hr>
+              <b-col>{{item.user_id}}</b-col>
+              <b-col cols="2">{{item.date}}</b-col>
+              <b-col>{{item.count}}</b-col>
+            </b-row>
+            <hr>
+          </div>
+        </b-container>
+        <div id = "paging">
+            <b-pagination-nav base-url="#" align = "center" :total-rows="10" :number-of-pages="10" v-model="currentPage" />
         </div>
-      </b-container>
-      <div id = "paging">
-          <b-pagination-nav base-url="#" align = "center" :total-rows="10" :number-of-pages="10" v-model="currentPage" />
       </div>
     </div>
   </div>
@@ -77,7 +75,7 @@ export default {
         { text: '제목' },
         { text: '작성자' },
         { text: '게시물 번호' }
-      ],
+      ]
     }
   },
 }
@@ -91,7 +89,9 @@ h4{
 }
  #board_main {
   margin-top: 50px;
-  margin-right: 100px;
+  margin-left: 300px;
+  margin-right:400px;
+
  }
  #title_button{
    float: center;
@@ -118,4 +118,3 @@ h4{
      margin-top: 500px;
  } 
 </style>
-

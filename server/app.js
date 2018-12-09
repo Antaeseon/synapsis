@@ -10,8 +10,8 @@ var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login')
 var registerRouter = require('./routes/register')
 var scoreRouter = require('./routes/score')
-var getMatchRouter = require('./routes/getMatch')
-
+var rankingRouter = require('./routes/ranking');
+var postingRouter = require('./routes/posting');
 
 const config = require('./config');
 
@@ -35,7 +35,8 @@ app.use('/users', usersRouter);
 app.use('/login', loginRouter);
 app.use('/register',registerRouter)
 app.use('/score',scoreRouter)
-app.use('/getMatch',getMatchRouter)
+app.use('/ranking', rankingRouter);
+app.use('/posting', postingRouter);
 
 
 // CONNECT TO MONGODB SERVER
@@ -45,6 +46,9 @@ db.once('open', function(){
     // CONNECTED TO MONGODB SERVER
     console.log("Connected to mongod server");
 });
+
+
+
 
 mongoose.connect(config.mongodbUri,{ useNewUrlParser: true })
 
