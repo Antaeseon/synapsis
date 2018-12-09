@@ -29,26 +29,24 @@
       </b-row>
       <b-container class="content_row">
         <b-row class="text-center" align-h= "center">
-          <b-col >번호</b-col>
-          <b-col cols="5">제목</b-col>
-          <b-col>작성자</b-col>
-          <b-col cols="2">등록일</b-col>
-          <b-col>조회수</b-col>
+          <b-col>번호</b-col>
+          <b-col>지역</b-col>
+          <b-col>종목</b-col>
+          <b-col>신청 날짜</b-col>
+          <b-col>매칭 유/무</b-col>
         </b-row>
         <hr>
-        <div v-for="item in boards" v-bind:key="item.id">
+        <div v-for="item in persons" v-bind:key="item.id">
           <b-row class="text-center">
-            <b-col >{{item.id}}</b-col>
-            <b-col cols="5">
-              <router-link to = "/board/view">
-                <b-button id= "title_button">{{item.title}}</b-button>
-              </router-link>
+            <b-col>{{item.index}}</b-col>
+            <b-col>{{item.region}}</b-col>
+            <b-col>
+              <router-link :to="{name: 'persons', params:{idx: item.index}}">{{item.category}}</router-link>
             </b-col>
-            <b-col>{{item.writer}}</b-col>
-            <b-col cols="2">{{item.date}}</b-col>
-            <b-col>{{item.cnt}}</b-col>
+            <b-col>{{item.date}}</b-col>
+            <b-col>{{item.selected}}</b-col>
           </b-row>
-        <hr>
+          <hr>
         </div>
         <div id = "paging">
           <b-pagination-nav base-url="#" align = "center" :total-rows="10" :number-of-pages="10" v-model="currentPage" />
@@ -60,24 +58,31 @@
 
 <script>
 import personpop from './modal/personpop'
-
+import axios from 'axios'
 
 export default {
-  name: 'Board',
-  data () {
-    return {
-      currentPage : 1,
-      searchText:'',
-      boards: [],
-      options: [
-        { text: '전체' },
-        { text: '제목' },
-        { text: '작성자' },
-        { text: '게시물 번호' }
-      ]
-    }
-
-  },
+  async created(){
+    await axios.get('http://localhost:3000/person')
+    .then(response=>{
+      this.persons = response.data;
+    })
+    .catch(e =>{
+      this.errors.push(e)
+    })
+},
+data () {
+  return {
+  currentPage : 1,
+  searchText:'',
+  persons: [],
+  options: [
+    { text: '전체' },
+    { text: '제목' },
+    { text: '작성자' },
+    { text: '게시물 번호' }
+  ]
+  }
+},
   components:{
     personpop
   }
@@ -104,22 +109,10 @@ h4{
    border:0;
    outline:0;
  }
- /* .searchFunction{
-    margin-top:50px;
-    width:80%; height:100%;
-    margin-bottom:50px;
- }
- .search{
-   width:70rem;
-   margin-left:330px;
-   padding-right:30px;
- } */
  .content_row {
    width:70rem;
  }
- /* #searchBar{
-   width:40rem;
- } */
+
  hr{
    width:70rem;
  }

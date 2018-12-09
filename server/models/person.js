@@ -2,12 +2,13 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const Person = new Schema({
-    id: {type :String, required : true},
-    teamName:{type :String, default:null},
-    sportsCategory:{type :String, required : true},
-    position:{type :String, default:'Allround'},
-    region:{type :String, defaul:null},
-    isChecked:{type : Boolean, default:false}
+    index:{
+        type: Number,
+        unique: true
+    },
+    user_name:{type:String},
+    region:{type:String},
+    
 })
 
 Person.statics.create = function(id, sportsCategory, position, region) {
