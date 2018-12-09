@@ -5,7 +5,6 @@
       <b-modal no-close-on-backdrop centered id="myCheck" size="md" hide-footer title="전적 확인">
         <check></check>
       </b-modal>
-
       <b-btn v-b-modal.myModal variant="primary" class="float-md-right col-2 ml-10">전적 등록</b-btn>
       <b-modal no-close-on-backdrop centered id="myModal" size="md" hide-footer title="전적 등록">
         <mercenary></mercenary>
@@ -35,7 +34,6 @@
             </b-col>
             <b-col cols="2" class="border black">{{percent}}%</b-col>
           </b-row>
-
           <b-row class="border border-info w-50 mt-1">
             <b-col cols="6">
               <p class="text-left">{{myTeamInfo.score}} points</p>
@@ -54,7 +52,6 @@
           <match-card :match="match"></match-card>
         </button>
     </div>
-
     <!-- <ul class="list-group w-50 mx-auto"> -->
         <!-- <b-col> -->
             <!-- <li class="list-group-item list-group-item-info m-1" v-for="item in items">{{item}}</li> -->
