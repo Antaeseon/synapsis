@@ -17,25 +17,21 @@ router.get("/", function(req, res) {
 // 용병 등록하기.
 router.post("/register", function(req, res) {
   var person = new Person();
+  
   person.user_id = req.body.user_id;
-  person.region = req.body.region;
-  person.category = req.body.category;
+  person.teamName = req.body.teamName;
+  person.sportsCategory = req.body.sportsCategory;
   person.position = req.body.position;
-  person.date = req.body.date;
-  person.time = req.body.time;
-  person.selected = 0; // 매치성공 :1 , 매치찾는중 :0
-
-  //카운트,인덱스는 디폴트 설정값이 있음.
-  if (!person.user_id) res.json({ result: 0 });
-  else {
-    person.save(function(err) {
-      if (err) {
-        console.error(err);
-        return;
-      }
-      res.json({ result: 1 });
-    });
-  }
+  person.region = req.body.region;
+  person.isChecked = req.body.isChecked;
+  
+  person.save(function(err) {
+    if (err) {
+      console.error(err);
+      return;
+    }
+    res.json({ result: 1 });
+  });
 });
 
 // 용병 상세 보기.
@@ -54,6 +50,5 @@ router.get("/:index", function(req, res) {
     console.log(result);
     res.json(result);
   });
-
 });
 module.exports = router;
