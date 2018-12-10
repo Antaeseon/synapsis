@@ -79,27 +79,13 @@ router.post('/acceptScore',async function(req, res, next) {
         await team2.save()
         await resTeam[0].save()        
     }else{
-        resTeam[0].isAdmit=1
+        resTeam[0].isAdmit=2
         await resTeam[0].save()        
     }
 
     console.log(resTeam)
     console.log("team1",team1)
     console.log("team2",team2)
-
-    res.send(resTeam)
-});
-
-
-router.post('/cancelScore',async function(req, res, next) {
-    let id=req.body.id
-    let resTeam=await Score.find(
-            {_id:id}
-    )
-    
-    resTeam[0].isAdmit=2
-    await resTeam[0].save()        
-
 
     res.send(resTeam)
 });
