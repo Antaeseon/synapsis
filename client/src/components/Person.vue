@@ -1,5 +1,5 @@
 <template>
-  <div id="board">
+  <div id="person">
     <h4 align-h="center">용병 구하기</h4>
     <div class="searchFunction">
       <b-row class="search">
@@ -21,6 +21,9 @@
         <b-col>
           <b-btn v-b-modal.myModal variant="primary" size="sm">용병 신청하기</b-btn>
         </b-col>
+        <b-col>
+          <b-btn v-b-modal.personMsg variant="primary" size="sm">채용 메세지함</b-btn>
+        </b-col>
       </b-row>
     </div>
     <div id="board_main">
@@ -33,31 +36,34 @@
               id="myModal"
               size="md"
               hide-footer
-              title="용병 등록하기"
-            >
+              title="용병 등록하기">
               <personpop></personpop>
             </b-modal>
+            <b-modal no-close-on-backdrop centered id="personMsg" size="md" hide-footer title="채용 메세지">
+                <personmsg></personmsg>
+            </b-modal>
           </div>
+          
         </b-col>
       </b-row>
       <b-container class="content_row">
         <b-row class="text-center" align-h="center">
           <b-col>번호</b-col>
-          <b-col cols="5">날짜</b-col>
           <b-col>스포츠타입</b-col>
+          <b-col>지역</b-col>
+          <b-col cols="5">날짜</b-col>
+          <b-col>계약상태</b-col>
+          <b-col>상세보기</b-col>
         </b-row>
         <hr>
-        <div v-for="item in boards" v-bind:key="item.id">
+        <div v-for="item in persons" v-bind:key="item.id">
           <b-row class="text-center">
-            <b-col>{{item.id}}</b-col>
-            <b-col cols="5">
-              <router-link to="/board/view">
-                <b-button id="title_button">{{item.title}}</b-button>
-              </router-link>
-            </b-col>
-            <b-col>{{item.writer}}</b-col>
-            <b-col cols="2">{{item.date}}</b-col>
-            <b-col>{{item.cnt}}</b-col>
+            <b-col>{{item.index}}</b-col>
+            <b-col>{{item.sportsCategory}}</b-col>
+            <b-col cols>{{item.region}}</b-col>
+            <b-col cols>{{item.date}}</b-col>
+            <b-col>{{item.isChecked}}</b-col>
+            <b-button :to="{name: 'personDetail', params:{idx: item.index}}">상세보기</b-button>
           </b-row>
           <hr>
         </div>
@@ -76,11 +82,35 @@
 </template>
 <script>
 import personpop from "./modal/personpop";
+import personmsg from "./modal/personMessage";
+import axios from "axios";
 
 export default {
-  name: "Board",
+  name: "person",
+  props: ["index"],
+  async created() {
+    await axios
+      .get("http://localhost:3000/person")
+      .then(response => {
+        this.persons = response.data;
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
+  },
+  async beforeUpdate() {
+    await axios
+      .get("http://localhost:3000/person")
+      .then(response => {
+        this.persons = response.data;
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
+  },
   data() {
     return {
+      persons: [],
       currentPage: 1,
       searchText: "",
       boards: [],
@@ -93,7 +123,7 @@ export default {
     };
   },
   components: {
-    personpop
+    personpop,personmsg
   }
 };
 </script>

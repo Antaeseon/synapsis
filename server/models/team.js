@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const Team = new Schema({
+const Team = new Schema({   
     team_name: {
         type: String,
         required: true
@@ -18,7 +18,8 @@ const Team = new Schema({
     score: {
         type: Number,
         default: 0
-    }
+    },
+    personList: [String] // 용병 리스트
 })
 
 Team.statics.create = function(team_name,id) {

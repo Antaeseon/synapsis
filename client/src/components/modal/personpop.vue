@@ -23,50 +23,51 @@
             <label class="pt-2">position:</label>
           </b-col>
           <b-col sm="9">
-            <b-form-input v-model="email" type="text" required placeholder="ex) 미드필더"></b-form-input>
+            <b-form-input v-model="position" type="text" required placeholder="ex) 미드필더"></b-form-input>
           </b-col>
           <b-col sm="3">
             <label class="pt-2">region:</label>
           </b-col>
           <b-col sm="9">
-            <b-form-input v-model="email" type="text" required placeholder="ex) 경기 수원시 팔달구"></b-form-input>
+            <b-form-input v-model="region" type="text" required placeholder="ex) 경기 수원시 팔달구"></b-form-input>
           </b-col>
           <b-col sm="3">
             <label class="pt-2">time:</label>
           </b-col>
           <b-col sm="9">
-            <b-form-input v-model="email" type="text" required placeholder="ex) 오전 9시"></b-form-input>
+            <b-form-input v-model="time" type="text" required placeholder="ex) 오전 9시"></b-form-input>
           </b-col>
           <b-col sm="3">
             <label class="pt-2">comment:</label>
           </b-col>
           <b-col sm="9">
-            <b-form-input v-model="email" type="text" required placeholder="ex) 열심히 뛰겠습니다."></b-form-input>
+            <b-form-input v-model="comment" type="text" required placeholder="ex) 열심히 뛰겠습니다."></b-form-input>
           </b-col>
           <b-col sm="3">
             <label class="pt-2">Category:</label>
           </b-col>
           <b-col sm="9">
+            
             <b-form-select
               class="mb-2 mr-sm-2 mb-sm-0"
               :value="null"
               :options="{ '1': 'BasketBall', '2': 'Soccer', '3': 'BaseBall' }"
               id="inlineFormCustomSelectPref"
+              v-model="sportsCategory"
             >
               <option slot="first" :value="null">Category</option>
             </b-form-select>
+
+          
+              
+            
           </b-col>
-          <label class="pt-2">경기일정</label>
-          <datepicker placeholder="날짜선택" v-model="date"></datepicker>
-        </b-row>
-        <b-row class="my-1" v-for="type in types" :key="type">
-          <b-col sm="4">
-            <label :for="`type-${type}`">{{ type }}:</label>
+          <b-col sm="3">
+                <label class="pt-2">date:</label>
           </b-col>
-          <b-col sm="8">
-            <b-form-input :id="`type-${type}`" :type="type"></b-form-input>
+          <b-col sm="9">
+               <datepicker placeholder="원하는 경기날짜를 선택" v-model="date"></datepicker>
           </b-col>
-          <hr>
         </b-row>
       </div>
     </b-container>
@@ -104,20 +105,24 @@
             </div>
     -->
     <hr>
-    <b-button class="float-center" type="submit" variant="primary">Apply</b-button>
+    <b-button class="float-center" type="submit" variant="primary" block @click="apply">Apply</b-button>
   </div>
 </template>
 
 <script>
 import Datepicker from "vuejs-datepicker";
+import axios from "axios";
+import config from "../../../config/config";
 
 export default {
   data() {
     return {
-      email: "",
+      position: "",
+      region: "",
+      time: "",
+      comment: "",
       date: null,
-      selected: null,
-
+      sportsCategory: "",
       /*options: [
         { value: null, text: '종목' },
         { value: 'a', text: '축구' },
@@ -130,16 +135,32 @@ export default {
       types: [`date`, "comment"]
     };
   },
+    components: {
+    Datepicker
+  },
   methods: {
-    onRegister(event) {
+    apply(event) {
       event.preventDefault(); //prevent reload page
+      axios.post("http://localhost:3000/person/register", {
+        user_id: this.$store.getters.id,
+        position: this.position,
+        region: this.region,
+        time: this.time,
+        date: this.date,
+        comment: this.comment,
+        sportsCategory: this.sportsCategory
+      });
       this.clear();
     },
     clear() {
-      _.forEach(this.form, (value, key) => {
-        this.form[key] = "";
-      });
-      this.pwCheckText = "";
+      alert('저장완료');
+      this.user_id= null,
+      this.position= null,
+      this.region= null,
+      this.time= null,
+      this.date= null,
+      this.comment= null,
+      this.sportsCategory= null
     }
   }
 };

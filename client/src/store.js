@@ -3,17 +3,19 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import config from '../config/config'
 
-Vue.use(Vuex)
-
+Vue.use(Vuex);
 
 export default new Vuex.Store({
+    // 컴포넌트 간에 공유할 데이터 속성
     state: {
         id: sessionStorage.getItem('id'),
-        Token:sessionStorage.getItem('Token')
+        Token:sessionStorage.getItem('Token'),
+        //teamName:sessionStorage.getItem('teamName') 
     },
     getters: {
         id: state => state.id,
         Token: state =>  state.Token,
+        //teamName: state => state.teamName
     },
     mutations: {
         login (state, { id, Token }) {
@@ -52,8 +54,7 @@ export default new Vuex.Store({
                  })
             })
         },
-
-        signOut ({ commit }) {
+        signOut ({ commit }){
             commit('signOut')
         }
     }
