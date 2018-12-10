@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const router = express.Router();
 const Person = require("../models/person");
 
+
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
@@ -46,11 +47,17 @@ router.post("/register", function(req, res) {
 router.get("/:index", function(req, res) {
   var idx = req.params.index;
 
-  // 해당 게시글의 조회수 증가.
-  Person.update({ index: idx }, { $inc: { count: 1 } }, function(err, result) {
-    if (err) return res.status(500).send({ error: "조회수 업데이트 실패." });
-    console.log("조회수 업데이트 성공!");
+  // 인덱스에 해당하는 게시글 불러오기.
+  Person.find({ index: idx }, function(err, result) {
+    if (err) return res.status(500).send({ error: "해당 글이 없습니다." });
+    console.log(result);
+    res.json(result);
   });
+});
+
+// 용병채용을 원하는 팀의정보 불러오기
+router.get("/loadteam", function(req, res) {
+  var idx = req.params.index;
 
   // 인덱스에 해당하는 게시글 불러오기.
   Person.find({ index: idx }, function(err, result) {
@@ -59,4 +66,16 @@ router.get("/:index", function(req, res) {
     res.json(result);
   });
 });
+// 용병채용이 승락된후 채용팀에 용병을 추가.
+router.get("/sendteam", function(req, res) {
+  var idx = req.params.index;
+
+  // 인덱스에 해당하는 게시글 불러오기.
+  Person.find({ index: idx }, function(err, result) {
+    if (err) return res.status(500).send({ error: "해당 글이 없습니다." });
+    console.log(result);
+    res.json(result);
+  });
+});
+
 module.exports = router;

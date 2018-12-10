@@ -21,6 +21,9 @@
         <b-col>
           <b-btn v-b-modal.myModal variant="primary" size="sm">용병 신청하기</b-btn>
         </b-col>
+        <b-col>
+          <b-btn v-b-modal.personMsg variant="primary" size="sm">용병 채용 메세지함</b-btn>
+        </b-col>
       </b-row>
     </div>
     <div id="board_main">
@@ -37,7 +40,11 @@
             >
               <personpop></personpop>
             </b-modal>
+            <b-modal no-close-on-backdrop centered id="personMsg" size="md" hide-footer title="채용 메세지">
+                <personmsg></personmsg>
+            </b-modal>
           </div>
+          
         </b-col>
       </b-row>
       <b-container class="content_row">
@@ -54,15 +61,10 @@
           <b-row class="text-center">
             <b-col>{{item.index}}</b-col>
             <b-col>{{item.sportsCategory}}</b-col>
-            <!-- <b-col cols="5">
-              <router-link to="/board/view">
-                <b-button id="title_button">{{item.region}}</b-button>
-              </router-link>
-            </b-col>-->
             <b-col cols>{{item.region}}</b-col>
             <b-col cols>{{item.date}}</b-col>
             <b-col>{{item.isChecked}}</b-col>
-            <b-button size="sm" class="mr-30" to="/person/detail">상세보기</b-button>
+            <b-button :to="{name: 'personDetail', params:{idx: item.index}}">상세보기</b-button>
           </b-row>
           <hr>
         </div>
@@ -81,10 +83,12 @@
 </template>
 <script>
 import personpop from "./modal/personpop";
-import detail from "./modal/personDetail";
+import personmsg from "./modal/personMessage";
 import axios from "axios";
+
 export default {
   name: "person",
+  props: ["index"],
   async created() {
     await axios
       .get("http://localhost:3000/person")
@@ -120,8 +124,7 @@ export default {
     };
   },
   components: {
-    personpop,
-    detail
+    personpop,personmsg
   }
 };
 </script>
