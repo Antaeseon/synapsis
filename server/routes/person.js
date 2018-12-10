@@ -17,14 +17,22 @@ router.get("/", function(req, res) {
 // 용병 등록하기.
 router.post("/register", function(req, res) {
   var person = new Person();
-  
+
   person.user_id = req.body.user_id;
   person.teamName = req.body.teamName;
+  person.date = req.body.date;
+  person.time = req.body.time;
   person.sportsCategory = req.body.sportsCategory;
+
+  if(req.body.sportsCategory == 1){person.sportsCategory = "basketball"}
+  else if(req.body.sportsCategory == 2){person.sportsCategory = "soccer"}
+  else{person.sportsCategory = "baseball"}
+
   person.position = req.body.position;
   person.region = req.body.region;
-  person.isChecked = req.body.isChecked;
-  
+  person.comment = req.body.comment;
+  person.isChecked = false; // 초기 계약 false
+
   person.save(function(err) {
     if (err) {
       console.error(err);

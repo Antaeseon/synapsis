@@ -1,5 +1,5 @@
 <template>
-  <div id="board">
+  <div id="person">
     <h4 align-h="center">용병 구하기</h4>
     <div class="searchFunction">
       <b-row class="search">
@@ -43,22 +43,26 @@
       <b-container class="content_row">
         <b-row class="text-center" align-h="center">
           <b-col>번호</b-col>
-          <b-col cols="5">날짜</b-col>
           <b-col>스포츠타입</b-col>
+          <b-col>지역</b-col>
+          <b-col cols="5">날짜</b-col>
           <b-col>계약상태</b-col>
+          <b-col>상세보기</b-col>
         </b-row>
         <hr>
-        <div v-for="item in boards" v-bind:key="item.id">
+        <div v-for="item in persons" v-bind:key="item.id">
           <b-row class="text-center">
-            <b-col>{{item.id}}</b-col>
-            <b-col cols="5">
+            <b-col>{{item.index}}</b-col>
+            <b-col>{{item.sportsCategory}}</b-col>
+            <!-- <b-col cols="5">
               <router-link to="/board/view">
-                <b-button id="title_button">{{item.title}}</b-button>
+                <b-button id="title_button">{{item.region}}</b-button>
               </router-link>
-            </b-col>
-            <b-col>{{item.writer}}</b-col>
-            <b-col cols="2">{{item.date}}</b-col>
-            <b-col>{{item.cnt}}</b-col>
+            </b-col>-->
+            <b-col cols>{{item.region}}</b-col>
+            <b-col cols>{{item.date}}</b-col>
+            <b-col>{{item.isChecked}}</b-col>
+            <b-button size="sm" class="mr-30" to="/person/detail">상세보기</b-button>
           </b-row>
           <hr>
         </div>
@@ -77,11 +81,33 @@
 </template>
 <script>
 import personpop from "./modal/personpop";
-
+import detail from "./modal/personDetail";
+import axios from "axios";
 export default {
-  name: "Board",
+  name: "person",
+  async created() {
+    await axios
+      .get("http://localhost:3000/person")
+      .then(response => {
+        this.persons = response.data;
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
+  },
+  async beforeUpdate() {
+    await axios
+      .get("http://localhost:3000/person")
+      .then(response => {
+        this.persons = response.data;
+      })
+      .catch(e => {
+        this.errors.push(e);
+      });
+  },
   data() {
     return {
+      persons: [],
       currentPage: 1,
       searchText: "",
       boards: [],
@@ -94,7 +120,8 @@ export default {
     };
   },
   components: {
-    personpop
+    personpop,
+    detail
   }
 };
 </script>
