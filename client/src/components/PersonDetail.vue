@@ -19,7 +19,7 @@
         <b-form-text id="post-text" type="text" placeholder="Enter context" :rows="20" :max-rows="20"></b-form-text>
       </b-row>
     </b-container>
-    <b-button class="personApply" type="submit" variant="primary" block @click="apply">용병 채용하기</b-button>
+    <b-button class="personApply" type="submit" variant="primary" block @click="accept">용병 채용하기</b-button>
   </div>
 </template>
 
@@ -46,8 +46,25 @@ export default {
       currentPage: 1,
       searchText: "",
     };
+  },
+  methods: {
+   accept() {
+     alert('11');
+      axios
+        .post(`http://localhost:3000/person/accept`, {
+          user_id: this.$store.getters.id, // 채용 신청한 아이디 post
+          index : this.$route.params.idx
+        })
+        .then(response => {
+          if (response.data.result == 1) {
+            console.log(response);
+            alert("저장성공");
+          } else if (response.data.result == 0) {
+            alert("저장실패 : 로그인후 사용하세요.");
+          }
+    });
+   }
   }
-  
 };
 </script>
 

@@ -62,7 +62,7 @@ export default {
         this.errors.push(e) 
             })
     },
-    data(){
+    data(){ 
         return{
             teams:[]
         }

@@ -22,7 +22,7 @@
           <b-btn v-b-modal.myModal variant="primary" size="sm">용병 신청하기</b-btn>
         </b-col>
         <b-col>
-          <b-btn v-b-modal.personMsg variant="primary" size="sm">용병 채용 메세지함</b-btn>
+          <b-btn v-b-modal.personMsg variant="primary" size="sm">채용 메세지함</b-btn>
         </b-col>
       </b-row>
     </div>
@@ -36,8 +36,7 @@
               id="myModal"
               size="md"
               hide-footer
-              title="용병 등록하기"
-            >
+              title="용병 등록하기">
               <personpop></personpop>
             </b-modal>
             <b-modal no-close-on-backdrop centered id="personMsg" size="md" hide-footer title="채용 메세지">

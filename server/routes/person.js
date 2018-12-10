@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const router = express.Router();
 const Person = require("../models/person");
-
+const Team = require("../models/team");
+const User = require('../models/user');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -55,16 +56,28 @@ router.get("/:index", function(req, res) {
   });
 });
 
-// 용병채용을 원하는 팀의정보 불러오기
-router.get("/loadteam", function(req, res) {
-  var idx = req.params.index;
+// 용병이 팀한테서 온 용병 채용을 승낙.
+router.post("/accept", function(req, res) {
+  var idx = req.body.index;
+  var user_id = req.body.user_id;
+  var team;
 
-  // 인덱스에 해당하는 게시글 불러오기.
-  Person.find({ index: idx }, function(err, result) {
-    if (err) return res.status(500).send({ error: "해당 글이 없습니다." });
-    console.log(result);
-    res.json(result);
+  User.findOne({ id: user_id },function(err,result) {
+    if (err) return res.status(500).send({ error: "로그인 에러 발생!" });
+    team = result.teamName;
+    
+    Team.updateOne({ teamName: team },{ $addToSet: { $push: { personList : user_id }}},function(err) {
+      if (err) return res.status(500).send({ error: "팀정보 업데이트중 에러발생!" });
+    });
+
+    Person.update({ index: idx },{$set:{ teamName : team , isChecked : true} },function(err) {
+      if (err) return res.status(500).send({ error: "용병정보 업데이트중 에러발생!" });
+    });
+    res.json({ success:1 });
   });
+
+
+
 });
 // 용병채용이 승락된후 채용팀에 용병을 추가.
 router.get("/sendteam", function(req, res) {
