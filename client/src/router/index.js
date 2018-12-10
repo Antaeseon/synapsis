@@ -9,6 +9,7 @@ import Person from '@/components/Person'
 import Ranking from '@/components/Ranking'
 import Board from '@/components/Board'
 import PersonDetail from '@/components/PersonDetail'
+import TeamMatcihng from '@/components/TeamMatching'
 
 Vue.use(Router)
 
@@ -58,6 +59,11 @@ export default new Router({
       path:'/PersonDetail/:idx',
       name: 'personDetail',
       component: PersonDetail
+    },
+    {
+      path: '/match',
+      name: 'TeamMatcihng',
+      component: TeamMatcihng
     }
   ]
 })
