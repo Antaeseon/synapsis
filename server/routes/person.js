@@ -33,7 +33,8 @@ router.post("/register", function(req, res) {
   person.position = req.body.position;
   person.region = req.body.region;
   person.comment = req.body.comment;
-  person.isChecked = false; // 초기 계약 false
+
+  
 
   person.save(function(err) {
     if (err) {
@@ -56,39 +57,50 @@ router.get("/:index", function(req, res) {
   });
 });
 
-// 용병이 팀한테서 온 용병 채용을 승낙.
-router.post("/accept", function(req, res) {
+// 팀장이 용병에게 채용요청
+router.post("/apply", function(req, res) {
   var idx = req.body.index;
+  var user_id = req.body.user_id;
+
+  User.findOne({ id: user_id },function(err,result) {
+    if (err) return res.status(500).send({ error: "로그인 에러 발생!" });
+  
+    Person.update({ index: idx },{$set:{ teamName : team , isChecked : 1} },function(err) {
+      if (err) return res.status(500).send({ error: "용병정보 업데이트중 에러발생!" });
+    });
+    res.json({ success:1 });
+  });
+});
+
+// 용병이 자신에게 온 메세지 확인
+router.post("/message", function(req, res) {
+  var id = req.body.user_id;
+  console.log(id);
+  // 인덱스에 해당하는 게시글 불러오기.
+  Person.findOne({ user_id: id }, function(err, result) {
+    if (err) return res.status(500).send({ error: "데이터를 로드하는데 오류가 발생했습니다." });
+    if (!result) return res.status(500).send({error:"용병 신청 목록에 현재 아이디가 없습니다."});
+    res.json(result);
+  });
+});
+
+// 용병이 자신에게 온 메세지 수락여부 결정.
+router.post("/accept", function(req, res) {
   var user_id = req.body.user_id;
   var team;
 
   User.findOne({ id: user_id },function(err,result) {
     if (err) return res.status(500).send({ error: "로그인 에러 발생!" });
     team = result.teamName;
-    
+
     Team.updateOne({ teamName: team },{ $addToSet: { $push: { personList : user_id }}},function(err) {
       if (err) return res.status(500).send({ error: "팀정보 업데이트중 에러발생!" });
     });
 
-    Person.update({ index: idx },{$set:{ teamName : team , isChecked : true} },function(err) {
+    Person.update({ user_id: user_id },{$set:{ teamName : team , isChecked : 2} },function(err) {
       if (err) return res.status(500).send({ error: "용병정보 업데이트중 에러발생!" });
     });
     res.json({ success:1 });
   });
-
-
-
 });
-// 용병채용이 승락된후 채용팀에 용병을 추가.
-router.get("/sendteam", function(req, res) {
-  var idx = req.params.index;
-
-  // 인덱스에 해당하는 게시글 불러오기.
-  Person.find({ index: idx }, function(err, result) {
-    if (err) return res.status(500).send({ error: "해당 글이 없습니다." });
-    console.log(result);
-    res.json(result);
-  });
-});
-
 module.exports = router;

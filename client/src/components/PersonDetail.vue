@@ -5,7 +5,7 @@
       <b-container class = "textarea1">
       <b-row align-h="center">
         <b-col sm="12">
-        아이디: {{persons[0].user_id}}지역: {{persons[0].region}}포지션:{{persons[0].position}} 경기가능날짜,시간 : {{persons[0].date}},{{persons[0].time   }}
+        아이디: {{persons[0].user_id}}지역: {{persons[0].region}}포지션:{{persons[0].position}} 경기가능날짜,time   : {{persons[0].date}},{{persons[0].time   }}
         </b-col>
         <b-col sm="11">
           <b-form-text id="post-title"></b-form-text>
@@ -49,9 +49,9 @@ export default {
   },
   methods: {
    accept() {
-     alert('11');
+     alert('해당 용병에게 채용신청을 성공했습니다.');
       axios
-        .post(`http://localhost:3000/person/accept`, {
+        .post(`http://localhost:3000/person/apply`, {
           user_id: this.$store.getters.id, // 채용 신청한 아이디 post
           index : this.$route.params.idx
         })

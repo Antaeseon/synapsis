@@ -18,7 +18,7 @@ const Person = new Schema({
   position: { type: String, default: "Allround" },
   region: { type: String },
   comment: { type: String },
-  isChecked: { type: Boolean }
+  isChecked: { type: Number }  // 0:채용X 1:채용중 2:채용완료
 });
 
 Person.plugin(autoIncrement.plugin, {

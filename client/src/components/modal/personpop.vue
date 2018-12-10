@@ -73,11 +73,14 @@
     </b-container>
     <hr>
     <!--
-        <b-form @submit="onRegister" class="m-1 mt-20">
+        <b-form @submit="onRegister" class="m-1 mt-20">GET /person - - ms - -
+
 
             <div class="d-flex flex-row mb-3">
-              <b-form-select v-model="selected" :options="options" class="mb-3" />
-              <div>Selected: <strong>{{ selected }}</strong></div>
+              <b-form-select v-model="selected" :optionGET /person - - ms - -
+" class="mb-3" />
+              <div>Selected: <strong>{{ selected }}</stGET /person - - ms - -
+>
             </div>
             <div>
               <label class="pt-2">position</label>
