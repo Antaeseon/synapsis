@@ -11,10 +11,10 @@
             <b-form-input v-model="searchText" type="text" placeholder="Search" size = "sm" id="searchBar" />
           </b-col>
           <b-col>
-            <b-button id="searchButton" type="submit" size = "sm" >Search</b-button>
+            <b-button id="searchButton" type="submit" size = "sm" variant="primary"  >Search</b-button>
           </b-col>
           <b-col>
-            <b-button id = "write_board"  size = "sm" class ="mr-30" to='/postpage/write'>글쓰기</b-button>
+            <b-button id = "write_board"  size = "sm" class ="mr-30" to='/postpage/write' variant="primary" >글쓰기</b-button>
           </b-col>
         </b-row>
       </b-container>

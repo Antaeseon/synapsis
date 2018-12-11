@@ -1,31 +1,28 @@
 <template>
-  <div id="person">
-    <h4 align-h="center">용병 구하기</h4>
-    <div class="searchFunction">
-      <b-row class="search">
-        <b-col>
-          <b-form-select v-model="selected" :options="options" class="mb-3" size="sm"/>
-        </b-col>
-        <b-col>
-          <b-form-input
-            v-model="searchText"
-            type="text"
-            placeholder="Search"
-            size="sm"
-            id="searchBar"
-          />
-        </b-col>
-        <b-col>
+    <div id="board">
+    <h2 align-h="center">용병 게시판</h2>
+    <div class = "searchFunction">
+      <b-container class="container-example">
+        <b-row class="search">
+          <b-col  sm="3.5">
+                <b-form-select v-model="selected" :options="options" class="mb-3" size = "sm" />
+          </b-col>
+          <b-col  sm="3.5">
+            <b-form-input v-model="searchText" type="text" placeholder="Search" size = "sm" id="searchBar" />
+          </b-col>
+         <b-col sm="0.5">
           <b-button id="searchButton" type="submit" size="sm">Search</b-button>
-        </b-col>
-        <b-col>
+        </b-col >
+        <b-col  >
           <b-btn v-b-modal.myModal variant="primary" size="sm">용병 신청하기</b-btn>
         </b-col>
         <b-col>
           <b-btn v-b-modal.personMsg variant="primary" size="sm">채용 메세지함</b-btn>
         </b-col>
-      </b-row>
+        </b-row>
+      </b-container>
     </div>
+
     <div id="board_main">
       <b-row>
         <b-col col="3">
@@ -47,23 +44,25 @@
         </b-col>
       </b-row>
       <b-container class="content_row">
-        <b-row class="text-center" align-h="center">
-          <b-col>번호</b-col>
-          <b-col>스포츠타입</b-col>
-          <b-col>지역</b-col>
-          <b-col cols="5">날짜</b-col>
-          <b-col>계약상태</b-col>
-          <b-col>상세보기</b-col>
+        <b-row align-h="center">
+          <b-col sm = "2">번호</b-col>
+          <b-col sm = "2">스포츠타입</b-col> 
+          <b-col sm = "1">지역</b-col>
+          <b-col sm = "4">날짜</b-col>
+          <b-col sm = "1">계약상태</b-col>
+          <b-col> 상세보기 </b-col>
         </b-row>
         <hr>
         <div v-for="item in persons" v-bind:key="item.id">
-          <b-row class="text-center">
+          <b-row align-h="center">
             <b-col>{{item.index}}</b-col>
             <b-col>{{item.sportsCategory}}</b-col>
-            <b-col cols>{{item.region}}</b-col>
-            <b-col cols>{{item.date}}</b-col>
+            <b-col >{{item.region}}</b-col>
+            <b-col >{{item.date}}</b-col>
             <b-col>{{item.isChecked}}</b-col>
-            <b-button :to="{name: 'personDetail', params:{idx: item.index}}">상세보기</b-button>
+            <b-col>
+              <b-button :to="{name: 'personDetail', params:{idx: item.index}}">상세보기</b-button>
+            </b-col>
           </b-row>
           <hr>
         </div>

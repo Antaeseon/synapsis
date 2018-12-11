@@ -12,9 +12,9 @@ var registerRouter = require('./routes/register')
 var scoreRouter = require('./routes/score')
 var rankingRouter = require('./routes/ranking');
 var postingRouter = require('./routes/posting');
-var personRouter = require('./routes/person')
+var personRouter = require('./routes/person');
+var getMatchRouter = require('./routes/getMatch');
 const config = require('./config');
-
 
 var app = express();
 app.use(cors())
@@ -38,6 +38,7 @@ app.use('/score',scoreRouter)
 app.use('/ranking', rankingRouter);
 app.use('/posting', postingRouter);
 app.use('/person',personRouter);
+app.use('/getMatch',getMatchRouter);
 
 
 // CONNECT TO MONGODB SERVER
