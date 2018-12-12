@@ -17,7 +17,7 @@ router.post('/', function (req, res, next) {
   } = req.body;
   const secret = req.app.get('jwt-secret');
   console.log("secrete : ", secret);
-  console.log(id, password)
+  console.log(id, password);
   // check exist user
   const check = function (user) {
     if (!user) { //유저 존재 안함

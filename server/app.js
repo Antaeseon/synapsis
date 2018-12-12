@@ -3,14 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const cors = require('cors')
-const mongoose = require('mongoose')
+const cors = require('cors');
+const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/login')
-var registerRouter = require('./routes/register')
-var scoreRouter = require('./routes/score')
-var getMatchRouter = require('./routes/getMatch')
+var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
+var scoreRouter = require('./routes/score');
+var getMatchRouter = require('./routes/getMatch');
+var matchListRouter = require('./routes/matchList');
 
 
 const config = require('./config');
@@ -33,9 +34,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
-app.use('/register',registerRouter)
-app.use('/score',scoreRouter)
-app.use('/getMatch',getMatchRouter)
+app.use('/register',registerRouter);
+app.use('/score',scoreRouter);
+app.use('/getMatch',getMatchRouter);
+app.use('./matchListRouter',matchListRouter);
+
 
 // CONNECT TO MONGODB SERVER
 var db = mongoose.connection;
