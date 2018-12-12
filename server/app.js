@@ -14,7 +14,7 @@ var rankingRouter = require('./routes/ranking');
 var postingRouter = require('./routes/posting');
 var personRouter = require('./routes/person');
 var getMatchRouter = require('./routes/getMatch');
-var matchListRouter = require('/routes/matchList');
+var matchListRouter = require('./routes/matchList');
 const config = require('./config');
 
 var app = express();
