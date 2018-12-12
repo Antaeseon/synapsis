@@ -6,9 +6,6 @@ import Stat from '@/components/Stat'
 import Postpage from '@/components/Postpage'
 import Write from '@/components/Write'
 import Person from '@/components/Person'
-import Ranking from '@/components/Ranking'
-import Board from '@/components/Board'
-import PersonDetail from '@/components/PersonDetail'
 import TeamMatcihng from '@/components/TeamMatching'
 
 Vue.use(Router)
@@ -36,7 +33,7 @@ export default new Router({
       component: Postpage
     },
     {
-      path: '/postpage/write',
+      path: '/postpage/wirte',
       name: 'write',
       component: Write
     },
@@ -44,21 +41,6 @@ export default new Router({
       path: '/person',
       name: 'person',
       component: Person
-    },
-    {
-      path: '/ranking',
-      name: 'ranking',
-      component: Ranking
-    },
-    {
-      path: '/board/:idx',
-      name:'board',
-      component: Board
-    },
-    {
-      path:'/PersonDetail/:idx',
-      name: 'personDetail',
-      component: PersonDetail
     },
     {
       path: '/match',
