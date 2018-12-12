@@ -7,7 +7,7 @@ const checkScore = new Schema({
     team1_score:{type :Number,required:true},
     team2_score:{type :Number, required : true},
     date:{type:Date},
-    isAdmit:{type : Boolean,default:false},
+    isAdmit:{type : Number,default:0},
 })
 
 checkScore.statics.findByTeamName = function(teamName) {
@@ -16,8 +16,6 @@ checkScore.statics.findByTeamName = function(teamName) {
         team2:teamName
     }).exec()
   }
-
-
 
 
 // User.statics.create = function(id, password,teamName,sportsCategory,position,isTeamLeader) {

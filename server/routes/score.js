@@ -51,6 +51,43 @@ router.post('/getStatusScore',async function(req, res, next) {
     res.send(resTeam)
 });
 
+router.post('/acceptScore',async function(req, res, next) {
+    let id=req.body.id
+    let resTeam=await Score.find(
+            {_id:id}
+    )
+    let team1 = await Team.findOne({
+        team_name : resTeam[0].team1
+    })
 
+    let team2 = await Team.findOne({
+        team_name : resTeam[0].team2
+    })
+
+    if(resTeam[0].team1_score>resTeam[0].team2_score){
+        team1.win+=1
+        team2.lose+=1
+        resTeam[0].isAdmit=1
+        await team1.save()
+        await team2.save()
+        await resTeam[0].save()
+    }else if(resTeam[0].team1_score<resTeam[0].team2_score){
+        team1.lose+=1
+        team2.win+=1
+        resTeam[0].isAdmit=1
+        await team1.save()
+        await team2.save()
+        await resTeam[0].save()        
+    }else{
+        resTeam[0].isAdmit=2
+        await resTeam[0].save()        
+    }
+
+    console.log(resTeam)
+    console.log("team1",team1)
+    console.log("team2",team2)
+
+    res.send(resTeam)
+});
 
 module.exports = router;
