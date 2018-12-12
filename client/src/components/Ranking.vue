@@ -1,63 +1,64 @@
 <template>
-    <div id = 'Ranking' >
-        <span>
-          <h3> &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;Ranking</h3>
-        </span>
+    <div id = 'Ranking'>
         <div>
-            <el class = "medalFrame">
-                <el class = "SilverMedalImg">
+          <h3 class="text-center">Ranking</h3>
+        </div>
+        <br>
+        <div>
+            <div class = "medalFrame">
+                <div class = "SilverMedalImg">
                     <img src="@/assets/silver.png" width="65" height="65"/>
                     <div class="SilverMedalFrame">
                         <div>팀이름 : {{teams[1].team_name}}</div>
                         <div>랭크점수 : {{teams[1].score}}</div>
-                        <div>승률 : {{(teams[1].win/(teams[1].win+teams[1].lose))*100}}%</div>
+                        <div>승률 : {{parseInt((teams[1].win/(teams[1].win+teams[1].lose))*100)}}%</div>
                         <div>순위 : 2</div>
                     </div>
-                </el>
+                </div>
                 
 
-                <el class = "GoldMedalImg" >
+                <div class = "GoldMedalImg" >
                     <img src="@/assets/gold.png" width="120" height="120"/>
                     <div class="GoldMedalFrame">
                         <div>팀이름 : {{teams[0].team_name}}</div>
                         <div>랭크점수 : {{teams[0].score}}</div>
-                        <div>승률 : {{(teams[0].win/(teams[0].win+teams[0].lose))*100}}%</div>
+                        <div>승률 : {{parseInt((teams[0].win/(teams[0].win+teams[0].lose))*100)}}%</div>
                         <div>순위 : 1</div>
                     </div>
-                </el>
+                </div>
 
-                <el class = "BronzeMedalImg">
+                <div class = "BronzeMedalImg">
                     <img src="@/assets/bronze.png" width="35" height="35"/>
                     <div class="BronzeMedalFrame">
                         <div>팀이름 : {{teams[2].team_name}}</div>
                         <div>랭크점수 : {{teams[2].score}}</div>
-                        <div>승률 : {{ (((teams[2].win/(teams[2].win+teams[2].lose))*100).toFixed(2)) }}%</div>
+                        <div>승률 : {{ parseInt(((teams[2].win/(teams[2].win+teams[2].lose))*100)) }}%</div>
                         <div>순위 : 3</div>
                     </div>
-                </el>
-            </el>
+                </div>
+            </div>
         </div>
         <div>
-            <el class='listFrame1'>
-                <b-row>
-                    <b-col>팀이릉</b-col>
-                    <b-col>랭크점수</b-col>
-                    <b-col>승률</b-col>
-                    <b-col>순위</b-col>
+            <div class='listFrame1'>
+                <b-row class="text-center">
+                    <b-col cols="3">팀이릉</b-col>
+                    <b-col cols="3">랭크점수</b-col>
+                    <b-col cols="3">승률</b-col>
+                    <b-col cols="3">순위</b-col>
                 </b-row>
-            </el>
-            <el class='listFrame2'>
+            </div>
+            <div class='listFrame2'>
                 <div style="overflow-y:scroll; height:400px;">
-                <el class="list" v-for="(team,index) in teams" :key="team.team_name">
-                    <b-row>
-                        <b-col> {{team.team_name}} </b-col>
-                        <b-col> {{team.score}} </b-col>
-                        <b-col> {{(team.win/(team.win+team.lose))*100}}% </b-col>
-                        <b-col> {{ index+1 }} </b-col>
+                <div class="list" v-for="(team,index) in teams" :key="team.team_name">
+                    <b-row class="text-center">
+                        <b-col cols="3"> {{team.team_name}} </b-col>
+                        <b-col cols="3"> {{team.score}} </b-col>
+                        <b-col cols="3"> {{parseInt((team.win/(team.win+team.lose))*100)}}% </b-col>
+                        <b-col cols="3"> {{ index+1 }} </b-col>
                     </b-row>
-                </el>
                 </div>
-            </el>   
+                </div>
+            </div>   
         </div>
     </div>
 </template>
@@ -88,36 +89,38 @@ export default {
 .listFrame1{
     position: relative;
     top : 45px;
-    float: left;
-    width: 90%;
     height: 25px;
+    margin-left: 4%;
+    margin-right: 4%;
     background-color: dodgerblue;
     border : 2px solid black;
     box-sizing: content-box;
     font-size : 20px;
-  
     color: aliceblue;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: left;
 }
 .listFrame2{
     position: relative;
+    width: 92%;
     top : 45px;
     float: left;
-    width: 90%;
+    margin-left: 4%;
+    margin-right: 4%;
     height: 400px;
     background-color: white;
     border : 1.5px solid black;
     box-sizing: content-box;
-    
 }
 .list{
     float: left;
-    width: 90%;
+    width: 100%;
     font-size: 18px;
+    text-align: left;
 }
 .medalFrame{
-    float: left;
-    width: 90.5%;
+    margin-left: 4%;
+    margin-right: 4%;
     height: 215px;
     /* border : 2px solid black;
     box-sizing: content-box; */
