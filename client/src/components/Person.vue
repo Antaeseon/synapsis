@@ -14,7 +14,7 @@
           <b-button id="searchButton" type="submit" size="sm">Search</b-button>
         </b-col >
         <b-col  >
-          <b-btn v-b-modal.myModal variant="primary" size="sm">용병 신청하기</b-btn>
+          <b-btn v-b-modal.myModal variant="primary"  size="sm">용병 신청하기</b-btn>
         </b-col>
         <b-col>
           <b-btn v-b-modal.personMsg variant="primary" size="sm">채용 메세지함</b-btn>
@@ -59,7 +59,9 @@
             <b-col>{{item.sportsCategory}}</b-col>
             <b-col >{{item.region}}</b-col>
             <b-col >{{item.date}}</b-col>
-            <b-col>{{item.isChecked}}</b-col>
+            <b-col v-show="item.isChecked=='0'">채용안됨</b-col>
+            <b-col v-show="item.isChecked=='1'">협상중..</b-col>
+            <b-col v-show="item.isChecked=='2'">채용완료</b-col>
             <b-col>
               <b-button :to="{name: 'personDetail', params:{idx: item.index}}">상세보기</b-button>
             </b-col>
