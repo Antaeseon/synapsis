@@ -3,8 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const cors = require('cors')
-const mongoose = require('mongoose')
+const cors = require('cors');
+const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login')
@@ -14,6 +14,7 @@ var rankingRouter = require('./routes/ranking');
 var postingRouter = require('./routes/posting');
 var personRouter = require('./routes/person');
 var getMatchRouter = require('./routes/getMatch');
+var matchListRouter = require('./routes/matchList');
 const config = require('./config');
 
 var app = express();
@@ -39,7 +40,7 @@ app.use('/ranking', rankingRouter);
 app.use('/posting', postingRouter);
 app.use('/person',personRouter);
 app.use('/getMatch',getMatchRouter);
-
+app.use('/matchList',matchListRouter);
 
 // CONNECT TO MONGODB SERVER
 var db = mongoose.connection;
