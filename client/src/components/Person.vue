@@ -47,9 +47,9 @@
         <b-row align-h="center">
           <b-col sm = "2">번호</b-col>
           <b-col sm = "2">스포츠타입</b-col> 
-          <b-col sm = "1">지역</b-col>
-          <b-col sm = "4">날짜</b-col>
-          <b-col sm = "1">계약상태</b-col>
+          <b-col sm = "2">지역</b-col>
+          <b-col sm = "2">날짜</b-col>
+          <b-col sm = "2">계약상태</b-col>
           <b-col> 상세보기 </b-col>
         </b-row>
         <hr>
@@ -119,7 +119,7 @@ export default {
         { text: "전체" },
         { text: "제목" },
         { text: "작성자" },
-        { text: "게시물 번호" }
+        { text: "게시물 번호"}
       ]
     };
   },
