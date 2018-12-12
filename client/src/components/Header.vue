@@ -7,8 +7,8 @@
         <b-col><b-link to="/" id="maintitle" >League of Sports</b-link></b-col>
         <b-col></b-col>
       </b-row>
-        <b-btn variant="primary" class="float-right" id="btnSignup" to='/signup' v-if="!Token"> sign-up</b-btn>
-        <b-btn v-b-modal.modalPrevent variant="primary" class="float-right" v-if="!Token">sign-in</b-btn>
+        <b-btn variant="primary" class="float-right" id="btnSignup" to='/signup' v-if="!Token"> 회원가입</b-btn>
+        <b-btn v-b-modal.modalPrevent variant="primary" class="float-right" v-if="!Token">로그인</b-btn>
         <b-btn variant="primary" class="float-right" @click="logout" v-if="Token"> logout</b-btn>
       <div>
   

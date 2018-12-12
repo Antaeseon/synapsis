@@ -22,7 +22,7 @@
     <div id="board">
       <div id = "board_main">
         <b-container fluid class="content_row">
-          <b-row class="text-center" align-h= "center">
+          <b-row class="text-center" align-h= "center" >
               <b-col >번호</b-col>
               <b-col cols="5">제목</b-col>
               <b-col>작성자</b-col>
@@ -67,6 +67,7 @@ export default {
   },
   data () {
     return {
+      selected:'',
       currentPage : 1,
       searchText:'',
       boards: [], 
@@ -84,6 +85,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.text-center{
+  width:80%;
+  margin:auto;
+}
 h4{
     margin-top: 30px;
 }
@@ -110,6 +115,6 @@ h4{
    width:80rem;
  }
  #paging{
-     margin-top: 500px;
+     margin-top: 200px;
  } 
 </style>
