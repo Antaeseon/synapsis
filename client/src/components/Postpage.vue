@@ -115,6 +115,7 @@ h4{
    width:80rem;
  }
  #paging{
-     margin-top: 500px;
+    position: relative;
+    margin-top : 3px; 
  } 
 </style>
