@@ -47,7 +47,6 @@
             <label class="pt-2">Category:</label>
           </b-col>
           <b-col sm="9">
-            
             <b-form-select
               class="mb-2 mr-sm-2 mb-sm-0"
               :value="null"
@@ -57,16 +56,12 @@
             >
               <option slot="first" :value="null">Category</option>
             </b-form-select>
-
-          
-              
-            
           </b-col>
           <b-col sm="3">
-                <label class="pt-2">date:</label>
+            <label class="pt-2">date:</label>
           </b-col>
           <b-col sm="9">
-               <datepicker placeholder="원하는 경기날짜를 선택" v-model="date"></datepicker>
+            <datepicker placeholder="원하는 경기날짜를 선택" v-model="date"></datepicker>
           </b-col>
         </b-row>
       </div>
@@ -138,7 +133,7 @@ export default {
       types: [`date`, "comment"]
     };
   },
-    components: {
+  components: {
     Datepicker
   },
   methods: {
@@ -156,14 +151,14 @@ export default {
       this.clear();
     },
     clear() {
-      alert('저장완료');
-      this.user_id= null,
-      this.position= null,
-      this.region= null,
-      this.time= null,
-      this.date= null,
-      this.comment= null,
-      this.sportsCategory= null
+      alert("저장완료");
+      (this.user_id = null),
+        (this.position = null),
+        (this.region = null),
+        (this.time = null),
+        (this.date = null),
+        (this.comment = null),
+        (this.sportsCategory = null);
     }
   }
 };

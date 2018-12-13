@@ -23,10 +23,35 @@
         >채용 거절</b-button>
       </div>
       <div id="msgList" v-show="data.isChecked == 0">
-        <h3>신청번호 {{data.index}} :</h3>현재 당신에게 채용을 요청한 팀이 없습니다.
+        <h3>신청번호 {{data.index}}</h3>현재 당신에게 채용을 요청한 팀이 없습니다.
       </div>
+
       <div id="msgList" v-show="data.isChecked == 2">
-        <h3>신청번호 {{data.index}} :</h3>채용완료
+        <h2>신청번호 {{data.index}}</h2>
+        <h5>상태:채용완료</h5>
+        채용된 팀: {{data.teamName}}
+        <br>
+        경기날짜: {{data.date}}
+        <br>
+        보내는 메세지: {{data.comment}}
+        <br>
+        <b-button
+          class="float-center"
+          type="submit"
+          variant="primary"
+          @click="start(data.index)"
+        >경기시작</b-button>
+        <b-button class="float-center" type="submit" variant="primary" @click="del(data.index)">취소하기</b-button>
+      </div>
+
+      <div id="msgList" v-show="data.isChecked == 3">
+        <h2>신청번호 {{data.index}}</h2>
+        <h5>상태:경기종료</h5>
+        채용된 팀: {{data.teamName}}
+        <br>
+        경기날짜: {{data.date}}
+        <br>
+        보내는 메세지: {{data.comment}}
         <br>
         <b-button class="float-center" type="submit" variant="primary" @click="del(data.index)">삭제하기</b-button>
       </div>
@@ -82,6 +107,12 @@ export default {
         index: idx
       });
       alert("삭제하였습니다.");
+    },
+    start(idx) {
+      axios.post("http://localhost:3000/person/start", {
+        index: idx
+      });
+      alert("경기시작!!");
     },
     clear() {
       alert("저장완료");
