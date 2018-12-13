@@ -95,13 +95,16 @@ export default {
     let score = await this.$http.post(`${config.uri}/score/getAllScore`, {
       teamName: user.teamName
     });
-    // console.log(team)
+    console.log('이쪽 팀',team.data.team_name)
     if (team) {
       this.myTeamInfo = team.data;
       this.matchList = score.data;
     } else {
 
     }
+    let tempList= await this.$http.post(`${config.uri}/match/getMatchList`)
+    
+
   },
   computed: {
     percent() {
