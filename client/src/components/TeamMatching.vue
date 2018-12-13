@@ -1,5 +1,6 @@
 <template>
   <div class="statC">
+    <br>
     <h1 class="text-left">Team Matching</h1>
     <br>
     <br>
@@ -30,7 +31,10 @@
     <hr>
     <br>
     <div>
-      <b-btn v-b-modal.myModal variant="primary" class="float-md-right col-2 ml-10">매치 등록</b-btn>
+      <b-btn v-b-modal.myCheck variant="primary" class="float-md-right col-2 ml-10">매칭 등록</b-btn>
+      <b-modal no-close-on-backdrop centered id="myCheck" size="md" hide-footer title="매칭 등록">
+        <check></check>
+      </b-modal>
     </div>
     <br>
     <br>
@@ -42,7 +46,7 @@
             <th scope="col">팀 점수</th>
             <th scope="col">경기 시간</th>
             <th scope="col">선호장소</th>
-            <th scope="col">Click!!</th>
+            <th scope="col">매치</th>
           </tr>
         </thead>
         <tbody>
@@ -51,7 +55,7 @@
             <td>Otto</td>
             <td>@mdo</td>
             <td>todo!</td>
-            <td><button>ddd</button></td>
+            <td><button>Click!!</button></td>
           </tr>
         </tbody>
       </table>
@@ -122,6 +126,11 @@ export default {
     mercenary,
     check,
     matchCard
+  },
+  methods:{
+    registerMatch(){
+      console.log('등록됨')
+    }
   }
 };
 </script>

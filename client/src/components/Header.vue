@@ -4,7 +4,7 @@
       <b-row>
         <b-col v-if="Token"><span class ="float-left"><b-img left src="https://picsum.photos/125/125/?image=43" rounded="circle" height='70%' width='70%' alt="left image" class="mr-3 mt-3"/> {{showId}}<p>dd</p></span></b-col>
         <b-col v-if="!Token"/>
-        <b-col><b-link to="/" id="maintitle" >League of Sports</b-link></b-col>
+        <b-col class="text-center"><b-link to="/" id="maintitle" >League of Sports</b-link></b-col>
         <b-col></b-col>
       </b-row>
         <b-btn variant="primary" class="float-right" id="btnSignup" to='/signup' v-if="!Token"> 회원가입</b-btn>
