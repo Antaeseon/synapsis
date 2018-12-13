@@ -45,7 +45,7 @@
       </div>
 
       <div id="msgList" v-show="data.isChecked == 3">
-        <h3>신청번호 {{data.index}}</h3>  
+        <h3>신청번호 {{data.index}}</h3>
         <h5>상태:경기종료</h5>
         채용된 팀: {{data.teamName}}
         <br>
@@ -94,12 +94,14 @@ export default {
         index: idx
       });
       this.clear();
+      this.$emit("exit", true);
     },
     deny(idx) {
       axios.post("http://localhost:3000/person/deny", {
         index: idx
       });
       this.clear();
+      this.$emit("exit", true);
     },
     del(idx) {
       axios.post("http://localhost:3000/person/del", {
@@ -107,12 +109,14 @@ export default {
         index: idx
       });
       alert("삭제하였습니다.");
+      this.$emit("exit", true);
     },
     start(idx) {
       axios.post("http://localhost:3000/person/start", {
         index: idx
       });
       alert("경기시작!!");
+      this.$emit("exit", true);
     },
     clear() {
       alert("저장완료");

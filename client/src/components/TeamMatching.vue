@@ -22,7 +22,7 @@
               <p class="text-center">{{myTeamInfo.team_name}}</p>
             </b-col>
             <b-col cols="6" class="bg-second text-black mt-1">
-              <p class="text-center">{{myTeamInfo.point}} points</p>
+              <p class="text-center">{{parseInt(myTeamInfo.point)}} points</p>
             </b-col>
           </b-row>
         </b-col>
@@ -51,7 +51,8 @@
       v-model="selected"
       :options="options"
       name="radioOpenions"
-      class="wid-50"
+      class="wid-100"
+
     ></b-form-radio-group>
 
     <div>
@@ -111,8 +112,8 @@ export default {
       matchList: {},
       similarList: {},
       options: [
-        { text: "매칭 구함", value: 0 },
-        { text: "매칭 완료", value: 1 }
+        { text: "Search", value: 0 },
+        { text: "Complete", value: 1 }
       ],
       selected: 0
     };

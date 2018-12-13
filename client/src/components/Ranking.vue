@@ -31,7 +31,7 @@
 
           <div class="GoldMedalFrame">
             <div>팀이름 : {{teams[0].team_name}}</div>
-            <div>랭크점수 : {{teams[0].point}}</div>
+            <div>랭크점수 : {{parseInt(teams[0].point)}}</div>
             <div>승률 : {{parseInt((teams[0].win/(teams[0].win+teams[0].lose))*100)}}%</div>
             <div>순위 : 1</div>
           </div>
@@ -64,10 +64,10 @@
       </div>
       <div class="listFrame2">
         <div style="overflow-y:scroll; height:400px;">
-          <div class="list" v-for="(team,index) in teams" :key="team.team_name">
+          <div class="list" v-for="(team,index) in teams" :key="team._id">
             <b-row class="text-center">
               <b-col cols="3">{{team.team_name}}</b-col>
-              <b-col cols="3">{{team.point}}</b-col>
+              <b-col cols="3">{{parseInt(team.point)}}</b-col>
               <b-col
                 cols="3"
                 v-show="team.win+team.lose!=0"

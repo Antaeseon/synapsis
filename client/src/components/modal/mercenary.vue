@@ -72,6 +72,8 @@ export default {
         date:this.date
       })
       this.clear();
+              this.$emit('exit',true)
+
       }
       catch(error){
         consol.log("이거",error.response.data)

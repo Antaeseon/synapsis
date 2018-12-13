@@ -31,7 +31,7 @@
 
     <div id="board_main">
       <b-row>
-        <b-col col="3">
+        <b-col cols="3">
           <div id="person">
             <b-modal
               no-close-on-backdrop
@@ -40,8 +40,9 @@
               size="md"
               hide-footer
               title="용병 등록하기"
+              ref="popupmodal"
             >
-              <personpop></personpop>
+              <personpop @exit="closepopup"></personpop>
             </b-modal>
             <b-modal
               no-close-on-backdrop
@@ -50,8 +51,9 @@
               size="md"
               hide-footer
               title="채용 메세지"
+              ref="msgmodal"
             >
-              <personmsg></personmsg>
+              <personmsg @exit="closemsg"></personmsg>
             </b-modal>
           </div>
         </b-col>
@@ -142,6 +144,14 @@ export default {
         { text: "게시물 번호" }
       ]
     };
+  },
+  methods: {
+    closepopup() {
+      this.$refs.popupmodal.hide();
+    },
+    closemsg() {
+      this.$refs.msgmodal.hide();
+    }
   },
   components: {
     personpop,

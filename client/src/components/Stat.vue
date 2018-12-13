@@ -2,12 +2,28 @@
   <div class="statC">
     <div>
       <b-btn v-b-modal.myCheck variant="primary" class="float-md-right col-2 ml-10">전적 확인</b-btn>
-      <b-modal no-close-on-backdrop centered id="myCheck" size="md" hide-footer title="전적 확인">
-        <check></check>
+      <b-modal
+        no-close-on-backdrop
+        centered
+        id="myCheck"
+        size="md"
+        hide-footer
+        title="전적 확인"
+        ref="checkModal"
+      >
+        <check @exit="closeCheck"></check>
       </b-modal>
       <b-btn v-b-modal.myModal variant="primary" class="float-md-right col-2 ml-10">전적 등록</b-btn>
-      <b-modal no-close-on-backdrop centered id="myModal" size="md" hide-footer title="전적 등록">
-        <mercenary></mercenary>
+      <b-modal
+        no-close-on-backdrop
+        centered
+        id="myModal"
+        size="md"
+        hide-footer
+        title="전적 등록"
+        ref="mercenaryModal"
+      >
+        <mercenary @exit="closeM"></mercenary>
       </b-modal>
     </div>
     <br>
@@ -21,6 +37,7 @@
             height="70%"
             width="70%"
             class="mr-3 mt-1"
+            ref="closemodal"
           />
           <p class="text-left mt-4">{{this.$store.getters.id}}</p>
         </b-col>
@@ -36,7 +53,7 @@
           </b-row>
           <b-row class="border border-info w-50 mt-1">
             <b-col cols="6">
-              <p class="text-left">{{myTeamInfo.point}} points</p>
+              <p class="text-left">{{parseInt(myTeamInfo.point)}} points</p>
             </b-col>
             <b-col cols="6">
               <p class="text-left">{{tier}}</p>
@@ -81,6 +98,14 @@ export default {
       matchList: {}
     };
   },
+  methods: {
+    closeCheck() {
+      this.$refs.checkModal.hide();
+    },
+    closeM() {
+      this.$refs.mercenaryModal.hide();
+    }
+  },
   async created() {
     let user = await this.$http.post(`${config.uri}/users/getUserInfo`, {
       id: this.$store.getters.id
@@ -113,10 +138,12 @@ export default {
       }
     },
     tier() {
-      if (this.user.score < 500) {
+      if (this.myTeamInfo.point < 600) {
         return "bronze";
+      } else if (this.myTeamInfo.point < 1200) {
+        return "silver";
       } else {
-        return "none";
+        return "gold";
       }
     }
   },

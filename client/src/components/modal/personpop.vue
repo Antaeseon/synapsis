@@ -149,6 +149,7 @@ export default {
         sportsCategory: this.sportsCategory
       });
       this.clear();
+      this.$emit("exit",true)
     },
     clear() {
       alert("저장완료");

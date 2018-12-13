@@ -20,7 +20,7 @@
       id="inputLive"
       :state="passwordState"
       aria-describedby="inputLiveFeedback"
-      type="text"
+      type="password"
       placeholder="Enter your password"
       class="inputform"
     ></b-form-input>
@@ -61,7 +61,6 @@
 
     <b-button class="inputButton" variant="primary" @click="register">submit</b-button>
     <b-button to="/" class="inputButton" variant="primary">home</b-button>
-    <b-button class="inputButton" variant="primary" @click="test">testbutton</b-button>
   </div>
 </template>
 
