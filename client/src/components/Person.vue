@@ -7,17 +7,12 @@
           <b-col  sm="3.5">
                 <b-form-select v-model="selected" :options="options" class="mb-3" size = "sm" />
           </b-col>
-          <b-col  sm="3.5">
-            <b-form-input v-model="searchText" type="text" placeholder="Search" size = "sm" id="searchBar" />
-          </b-col>
-         <b-col sm="0.5">
+         <b-col sm="1">
           <b-button id="searchButton" type="submit" size="sm">Search</b-button>
         </b-col >
-        <b-col  >
+        <b-col sm="0.5">
           <b-btn v-b-modal.myModal variant="primary"  size="sm">용병 신청하기</b-btn>
-        </b-col>
-        <b-col>
-          <b-btn v-b-modal.personMsg variant="primary" size="sm">채용 메세지함</b-btn>
+           <b-btn v-b-modal.personMsg variant="primary" size="sm">채용 메세지함</b-btn>
         </b-col>
         </b-row>
       </b-container>
@@ -62,6 +57,8 @@
             <b-col v-show="item.isChecked=='0'">채용안됨</b-col>
             <b-col v-show="item.isChecked=='1'">협상중..</b-col>
             <b-col v-show="item.isChecked=='2'">채용완료</b-col>
+            <b-col v-show="item.isChecked=='3'">만료</b-col>
+            <b-col v-show="item.isChecked=='4'">경기종료</b-col>
             <b-col>
               <b-button :to="{name: 'personDetail', params:{idx: item.index}}">상세보기</b-button>
             </b-col>
@@ -116,10 +113,10 @@ export default {
       searchText: "",
       boards: [],
       options: [
-        { text: "전체" },
-        { text: "제목" },
-        { text: "작성자" },
-        { text: "게시물 번호"}
+        { text: "서울" },
+        { text: "수원" },
+        { text: "분당" },
+        { text: "오산"}
       ]
     };
   },

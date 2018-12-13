@@ -14,7 +14,7 @@ const Post = new Schema({
     user_id: {type :String },
     title: {type :String },
     context: {type :String},
-    date: {type :Date},
+    date: {type: String},
     count: {type :Number, default: 0}
 });
 

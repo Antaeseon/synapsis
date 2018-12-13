@@ -109,9 +109,10 @@ hr {
   margin-top: 500px;
 }
 .personApply{
-    width:120px;
+ 
     position: relative;
-    left:780px;
+    left:47%;
+    width:120px;
     top:18px;
 
     

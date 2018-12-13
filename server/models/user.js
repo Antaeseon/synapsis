@@ -9,6 +9,7 @@ const User = new Schema({
     position:{type :String,default:'Allround'},
     isTeamLeader:{type : Boolean,required:true},
     score:{type : Number, default:1000},
+    tempTeam:{type :String},
     admin: { type: Boolean, default: false }
 })
 

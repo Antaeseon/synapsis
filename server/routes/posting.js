@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const router = express.Router();
 const Post = require("../models/post");
+const date = require('date-and-time');
 
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
@@ -10,7 +11,7 @@ router.get("/", function(req, res) {
   Post.find({}, function(err, result) {
     if (err) return res.status(500).send({ error: "DB is not found!" });
     res.json(result);
-  });
+  }).sort({ index: -1 });
 });
 
 // 게시글 등록하기.
@@ -19,8 +20,9 @@ router.post("/register", function(req, res) {
   post.title = req.body.title;
   post.context = req.body.context;
   post.user_id = req.body.user_id;
-  post.date = Date.now();
-
+  let now = new Date();
+  post.date = date.format(now,'YYYY/MM/DD HH:mm:ss');
+  
   //카운트,인덱스는 디폴트 설정값이 있음.
   if (!post.user_id) res.json({ result: 0 });
   else {
