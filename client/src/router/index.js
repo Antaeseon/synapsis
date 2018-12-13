@@ -6,6 +6,8 @@ import Stat from '@/components/Stat'
 import Postpage from '@/components/Postpage'
 import Write from '@/components/Write'
 import Person from '@/components/Person'
+import Ranking from '@/components/Ranking'
+import Board from '@/components/Board'
 
 Vue.use(Router)
 
@@ -32,7 +34,7 @@ export default new Router({
       component: Postpage
     },
     {
-      path: '/postpage/wirte',
+      path: '/postpage/write',
       name: 'write',
       component: Write
     },
@@ -40,6 +42,16 @@ export default new Router({
       path: '/person',
       name: 'person',
       component: Person
+    },
+    {
+      path: '/ranking',
+      name: 'ranking',
+      component: Ranking
+    },
+    {
+      path: '/board/:idx',
+      name:'board',
+      component: Board
     }
   ]
 })

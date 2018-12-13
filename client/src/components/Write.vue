@@ -1,38 +1,82 @@
 <template>
-  <div id='write'>
-    <h1>This is a New page!</h1>
-      <b-container textarea1>
-      <b-row class="my-1">
-        <b-col sm="0.5"><label for="input-default">제목:</label></b-col>
-        <b-col sm="8">
-          <b-form-input id="input-default" type="text" placeholder="Enter your name"></b-form-input>
-        </b-col>
-      </b-row>
-    </b-container>
-    <b-container textarea2>
-      <b-row class="my-2">
-        <b-col sm="0.5"><label for="textarea1">내용:</label></b-col>
-        <b-col sm="8">
-        <b-form-textarea id="textarea1" v-model="text" placeholder="Enter something" :rows="3" :max-rows="6"></b-form-textarea>
-        </b-col>
-        <pre class="mt-3">{{ text }}</pre>
-      </b-row>
-    </b-container>
+  <div>
+    <h4>새로운 게시글 작성하기</h4>
+    <form id="write" @submit="sendPost">
+      <b-container class="textarea1">
+        <b-row align-h="center">
+          <b-col sm="1">
+            <label for="post-title">제목:</label>
+          </b-col>
+          <b-col sm="11">
+            <b-form-input id="post-title" v-model="title" type="text" placeholder="Enter title"></b-form-input>
+          </b-col>
+        </b-row>
+      </b-container>
+      <b-container class="textarea2">
+        <b-row align-h="center">
+          <b-col sm="1">
+            <label for="post-text">내용:</label>
+          </b-col>
+          <b-col sm="11">
+            <b-form-textarea
+              id="post-text"
+              v-model="context"
+              type="text"
+              placeholder="Enter context"
+              :rows="20"
+              :max-rows="20"
+            ></b-form-textarea>
+          </b-col>
+        </b-row>
+      </b-container>
+      <button>등록</button>
+    </form>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  data () {
+  data() {
     return {
-      text: ''
+      title: "",
+      context: ""
+    };
+  },
+  methods: {
+    sendPost() {
+      axios
+        .post(`http://localhost:3000/posting/register`, {
+          context: this.context,
+          title: this.title,
+          user_id: this.$store.getters.id
+        })
+        .then(response => {
+          if (response.data.result == 1) {
+            console.log(response);
+            alert("저장성공");
+          } else if (response.data.result == 0) {
+            alert("저장실패 : 로그인후 사용하세요.");
+          }
+        });
     }
   }
-}
+};
 </script>
 
 <style scoped>
-h1{
+h4 {
   text-align: center;
+  margin: 20px;
+}
+.textarea1 {
+  margin-top: 50px;
+}
+.textarea2 {
+  margin-top: 20px;
+}
+#submit {
+  margin-top: 20px;
 }
 </style>

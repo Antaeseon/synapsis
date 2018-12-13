@@ -143,6 +143,7 @@ export default {
 .categorydiv {
   margin-left: 1px;
   margin-top: 10px;
+  width: 30rem;
 }
 
 #sText {
