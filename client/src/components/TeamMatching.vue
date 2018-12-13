@@ -43,19 +43,17 @@
         <thead>
           <tr>
             <th scope="col">팀명</th>
-            <th scope="col">팀 점수</th>
             <th scope="col">경기 시간</th>
             <th scope="col">선호장소</th>
             <th scope="col">매치</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>todo!</td>
-            <td><button>Click!!</button></td>
+          <tr v-for="list in similarList" :key="list._id" v-show="list.isAdmit==false">
+            <td>{{list.myteam}}</td>
+            <td>{{list.date}}</td>
+            <td>{{list.location}}</td>
+            <td><button @click="chooseMatch(list._id)">Click!!</button></td>
           </tr>
         </tbody>
       </table>
@@ -79,7 +77,8 @@ export default {
       user: {},
       items: ["dd", "aa"],
       myTeamInfo: {},
-      matchList: {}
+      matchList: {},
+      similarList:{}
     };
   },
   async created() {
@@ -95,16 +94,16 @@ export default {
     let score = await this.$http.post(`${config.uri}/score/getAllScore`, {
       teamName: user.teamName
     });
-    console.log('이쪽 팀',team.data.team_name)
+    console.log('이쪽 팀',score)
     if (team) {
       this.myTeamInfo = team.data;
       this.matchList = score.data;
     } else {
 
     }
-    let tempList= await this.$http.post(`${config.uri}/match/getMatchList`)
-    
-
+    let tempList= await this.$http.post(`${config.uri}/match/getMatchList`,{team:team.data.team_name})
+    console.log(tempList.data)
+    this.similarList=tempList.data
   },
   computed: {
     percent() {
@@ -134,6 +133,9 @@ export default {
     },
     closemodal(){
       this.$refs.matchModal.hide();
+    },
+    chooseMatch(id){
+      console.log(id)
     }
   }
 };
