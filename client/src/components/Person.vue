@@ -146,22 +146,9 @@ h4 {
   border: 0;
   outline: 0;
 }
-/* .searchFunction{
-    margin-top:50px;
-    width:80%; height:100%;
-    margin-bottom:50px;
- }
- .search{
-   width:70rem;
-   margin-left:330px;
-   padding-right:30px;
- } */
 .content_row {
   width: 70rem;
 }
-/* #searchBar{
-   width:40rem;
- } */
 hr {
   width: 70rem;
 }

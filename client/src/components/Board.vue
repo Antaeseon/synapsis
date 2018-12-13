@@ -1,10 +1,10 @@
 <template>
   <div>
-    <h1>게시글 상세보기</h1>
+    <h4>게시글 상세보기</h4>
       <b-container class = "textarea1">
       <b-row align-h="center">
         <b-col sm="1"><label for="post-title">제목:</label></b-col>
-        <b-col sm="11">
+        <b-col sm="9">
           <b-form-text id="post-title">{{posts[0].title}}</b-form-text>
         </b-col>
       </b-row>
@@ -12,7 +12,7 @@
     <b-container class = "textarea2">
       <b-row align-h="center">
         <b-col sm="1"><label for="post-text">내용:</label></b-col>
-        <b-col sm="11">
+        <b-col sm="9">
         <b-form-text id="post-text" type="text" placeholder="Enter context" :rows="20" :max-rows="20">{{posts[0].context}}</b-form-text>
         </b-col>
       </b-row>
@@ -37,26 +37,20 @@ export default {
     data : function() {
         return {
             idx : this.$route.params.idx,
-            posts: [],
+            posts: []
         }
     }
 }
 </script>
 
 <style>
-h1{
-  text-align: center;
-  margin: 20px;
-}
 .textarea1{
-  margin-top: 50px;
-  background-color: antiquewhite;
-  font-size: 30px;
+  margin-top: 5%;
+  font-size: 20px;
 }
 .textarea2{
   margin-top: 20px;
-  background-color: antiquewhite;
-  font-size: 30px;
+  font-size: 20px;
   height: 200px;
 }
 #submit{

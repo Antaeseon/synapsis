@@ -4,10 +4,10 @@
     <div class = "searchFunction">
       <b-container class="container-example">
         <b-row class="search">
-          <b-col>
+          <b-col sm="3.5">
                 <b-form-select v-model="selected" :options="options" class="mb-3" size = "sm" />
           </b-col>
-          <b-col>
+          <b-col sm="3.5">
             <b-form-input v-model="searchText" type="text" placeholder="Search" size = "sm" id="searchBar" />
           </b-col>
           <b-col>
@@ -22,7 +22,7 @@
     <div id="board">
       <div id = "board_main">
         <b-container fluid class="content_row">
-          <b-row class="text-center" align-h= "center">
+          <b-row class="text-center" align-h= "center" >
               <b-col >번호</b-col>
               <b-col cols="5">제목</b-col>
               <b-col>작성자</b-col>
@@ -67,6 +67,7 @@ export default {
   },
   data () {
     return {
+      selected:'',
       currentPage : 1,
       searchText:'',
       boards: [], 
@@ -84,6 +85,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.text-center{
+  width:80%;
+  margin:auto;
+}
 h4{
     margin-top: 30px;
 }
@@ -103,11 +108,6 @@ h4{
  .content_row {
    width:70rem;
  }
- /* .searchFunction{
-    margin-top:50px;
-    width:80%; height:100%;
-    margin-bottom:50px;
- } */
 .search{
     margin-top : 50px;
  }
