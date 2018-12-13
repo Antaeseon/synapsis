@@ -76,6 +76,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   data() {
     return {
@@ -136,8 +137,11 @@ export default {
 };
 </script>
 
-<style>
+
+<style lang="css">
 @import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url("https://fonts.googleapis.com/css?family=Luckiest+Guy");
+
 .nav-link {
   width: 200px;
   margin-left: 5px;

@@ -19,10 +19,10 @@
           <b-col sm="1">
             <b-button id="searchButton" type="submit" size="sm">Search</b-button>
           </b-col>
-          <b-col sm="1.5">
+          <b-col sm="1.7">
             <b-btn v-b-modal.myModal variant="primary" size="sm">용병 신청하기</b-btn>
           </b-col>
-          <b-col sm="1">
+          <b-col sm="2">
             <b-btn v-b-modal.personMsg variant="primary" size="sm">채용 메세지함</b-btn>
           </b-col>
         </b-row>
@@ -118,7 +118,7 @@ export default {
         this.errors.push(e);
       });
   },
-  async beforeUpdate() {
+  async mounted() {
     await axios
       .get("http://localhost:3000/person")
       .then(response => {
