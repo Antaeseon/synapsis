@@ -56,12 +56,10 @@ export default {
         user_id: this.$store.getters.id,
         index : idx
       });
-      alert('채용을 수락 하셨습니다.');
       this.clear();
     },
      deny(idx) {
       axios.post("http://localhost:3000/person/deny", {
-        user_id: this.$store.getters.id,
         index : idx
       });
       this.clear();
@@ -72,6 +70,9 @@ export default {
         index : idx
       });
       alert('삭제하였습니다.');
+    },
+     clear() {
+      alert('저장완료');
     }
   }
 };

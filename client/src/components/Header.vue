@@ -16,7 +16,7 @@
         <b-modal id="modalPrevent" ref="modal" title="Login" @ok="handleOk" @shown="clearName">
           <form @submit.stop.prevent="handleSubmit">
             <b-form-input type="text" placeholder="Enter your id" v-model="id"></b-form-input>
-            <b-form-input type="text" placeholder="Enter your password" v-model="password"></b-form-input>
+            <b-form-input type="password" placeholder="Enter your password" v-model="password"></b-form-input>
           </form>
         </b-modal>
       </div>

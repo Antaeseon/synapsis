@@ -1,7 +1,7 @@
 <template>
     <div id = 'Ranking'>
         <div>
-          <h3 class="text-center">Ranking</h3>
+          <h1 class="text-left">랭킹</h1>
         </div>
         <br>
         <div>

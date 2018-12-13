@@ -113,17 +113,13 @@ router.post("/accept", function(req, res) {
 router.post("/deny", function(req, res) {
   var user_id = req.body.user_id;
   var index = req.body.index;
-  var team;
-
-  User.findOne({ id: user_id },function( err , result ) {
-    if (err) return res.status(500).send({ error: "로그인 에러 발생!" });
-    team = result.teamName;
-    Person.update({ index: index },{ $set:{ isChecked : 0 } },function(err) {
+  console.log(index);
+    Person.updateOne({ index: index },{ $set:{ isChecked : 0 } },function(err) {
       if (err) return res.status(500).send({ error: "용병정보 업데이트중 에러발생!" });
     });
     res.json({ success:1 });
-  });
 });
+
 
 
 //용병이 경기를 했거나 일시가 만료된경우 체크해서 상태를 변경.
@@ -148,20 +144,12 @@ router.post("/check", function(req, res) {
 
 router.post("/del", function(req, res) {
   var user_id = req.body.user_id;
-  var team;
+  var index = req.body.index;
 
-  User.findOne({ id: user_id },function(err,result) {
-    if (err) return res.status(500).send({ error: "로그인 에러 발생!" });
-    team = result.teamName;
-
-    Team.updateOne({ teamName: team },{ $addToSet: { $pop: { personList : user_id }}},function(err) {
-      if (err) return res.status(500).send({ error: "팀정보 업데이트중 에러발생!" });
-    });
-
-    Person.update({ user_id: user_id },{$set:{ tempTeam : null , isChecked : 4} },function(err) {
+    Person.update({ index: index },{$set:{ isChecked : 4} },function(err) {
       if (err) return res.status(500).send({ error: "용병정보 업데이트중 에러발생!" });
     });
     res.json({ success:1 });
   });
-});
+
 module.exports = router;

@@ -1,6 +1,6 @@
 <template>
     <div id="board">
-    <h2 align-h="center">용병 게시판</h2>
+    <h1 class="text-left">용병 게시판</h1>
     <div class = "searchFunction">
       <b-container class="container-example">
         <b-row class="search">
@@ -35,7 +35,6 @@
                 <personmsg></personmsg>
             </b-modal>
           </div>
-          
         </b-col>
       </b-row>
       <b-container class="content_row">

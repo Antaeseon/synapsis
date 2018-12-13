@@ -20,7 +20,9 @@
                 <b-form-select v-model="counterScore" :options="options" class="mb-3 pt-2" required/>
             </div>
             <hr>
+            <form @submit.stop.prevent="handleSubmit">
             <b-button class="float-center" type="submit" variant="primary">전적 등록</b-button>
+            </form>
         </b-form>
     </div>
 </template>
