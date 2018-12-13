@@ -39,7 +39,7 @@ export default {
 
 .bg{
     /* The image used */
-  background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(11).jpg");
+  /* background-image: url("https://mdbootstrap.com/img/Photos/Horizontal/Nature/full page/img(11).jpg"); */
 
   /* Full height */
   height: 100%;
