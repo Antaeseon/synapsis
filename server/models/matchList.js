@@ -5,7 +5,7 @@ const matchList = new Schema({
     myteam : { type : String },
     counterteam : { type: String},
     date:{type:String},
-    sportstype: {type:String},
+    location:{type:String},
     isAdmit : {type:Boolean}
 });
 
