@@ -15,7 +15,7 @@ const Team = new Schema({
         type: Number,
         default: 0
     },
-    score: {
+    point: {
         type: Number,
         default: 0
     },
