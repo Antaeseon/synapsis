@@ -10,7 +10,7 @@ router.get("/", function(req, res) {
   Post.find({}, function(err, result) {
     if (err) return res.status(500).send({ error: "DB is not found!" });
     res.json(result);
-  });
+  }).sort({ index: -1 });
 });
 
 // 게시글 등록하기.

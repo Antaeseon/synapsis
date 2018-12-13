@@ -1,7 +1,7 @@
 <template>
   <div id="Ranking">
     <div>
-      <h3 class="text-center">Ranking</h3>
+      <h1 class="title">Ranking</h1>
     </div>
     <br>
     <div>
@@ -28,6 +28,7 @@
             width="120"
             height="120"
           >
+
           <div class="GoldMedalFrame">
             <div>팀이름 : {{teams[0].team_name}}</div>
             <div>랭크점수 : {{teams[0].score}}</div>
@@ -190,5 +191,10 @@ h3 {
   width: 99%;
   position: relative;
   height: 47%;
+}
+#Ranking {
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-top: 2%;
 }
 </style>
