@@ -14,7 +14,7 @@
             class="mr-3 mt-3"
           />
           {{showId}}
-          <p>dd</p>
+          <p>Hi~</p>
         </span>
       </b-col>
       <b-col v-if="!Token"/>

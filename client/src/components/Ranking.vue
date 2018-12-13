@@ -68,7 +68,11 @@
             <b-row class="text-center">
               <b-col cols="3">{{team.team_name}}</b-col>
               <b-col cols="3">{{team.point}}</b-col>
-              <b-col cols="3">{{parseInt((team.win/(team.win+team.lose))*100)}}%</b-col>
+              <b-col
+                cols="3"
+                v-show="team.win+team.lose!=0"
+              >{{parseInt((team.win/(team.win+team.lose))*100)}}%</b-col>
+              <b-col cols="3" v-show="team.win+team.lose==0">0%</b-col>
               <b-col cols="3">{{ index+1 }}</b-col>
             </b-row>
           </div>
