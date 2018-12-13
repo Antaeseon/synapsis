@@ -1,6 +1,6 @@
 <template>
     <div id="board">
-    <h2 align-h="center">용병 게시판</h2>
+    <h4 align-h="center">용병 게시판</h4>
     <div class = "searchFunction">
       <b-container class="container-example">
         <b-row class="search">
@@ -13,7 +13,7 @@
          <b-col sm="0.5">
           <b-button id="searchButton" type="submit" size="sm">Search</b-button>
         </b-col >
-        <b-col  >
+        <b-col>
           <b-btn v-b-modal.myModal variant="primary"  size="sm">용병 신청하기</b-btn>
         </b-col>
         <b-col>
@@ -43,32 +43,33 @@
           
         </b-col>
       </b-row>
-      <b-container class="content_row">
+      <b-container class="content_row" align-h="center">
         <b-row align-h="center">
-          <b-col sm = "2">번호</b-col>
+          <b-col sm = "1">번호</b-col>
           <b-col sm = "2">스포츠타입</b-col> 
           <b-col sm = "2">지역</b-col>
-          <b-col sm = "2">날짜</b-col>
+          <b-col sm = "3">날짜</b-col>
           <b-col sm = "2">계약상태</b-col>
           <b-col> 상세보기 </b-col>
         </b-row>
         <hr>
         <div v-for="item in persons" v-bind:key="item.id">
           <b-row align-h="center">
-            <b-col>{{item.index}}</b-col>
-            <b-col>{{item.sportsCategory}}</b-col>
-            <b-col >{{item.region}}</b-col>
-            <b-col >{{item.date}}</b-col>
-            <b-col v-show="item.isChecked=='0'">채용안됨</b-col>
-            <b-col v-show="item.isChecked=='1'">협상중..</b-col>
-            <b-col v-show="item.isChecked=='2'">채용완료</b-col>
+            <b-col sm="1">{{item.index}}</b-col>
+            <b-col sm="2">{{item.sportsCategory}}</b-col>
+            <b-col sm="2">{{item.region}}</b-col>
+            <b-col sm="3">{{item.date}}</b-col>
+            <b-col sm="2" v-show="item.isChecked=='0'">채용안됨</b-col>
+            <b-col sm="2" v-show="item.isChecked=='1'">협상중..</b-col>
+            <b-col sm="2" v-show="item.isChecked=='2'">채용완료</b-col>
             <b-col>
-              <b-button :to="{name: 'personDetail', params:{idx: item.index}}">상세보기</b-button>
+              <b-button :to="{name: 'personDetail', params:{idx: item.index}}" variant="primary" size="sm">상세보기</b-button>
             </b-col>
           </b-row>
           <hr>
         </div>
-        <div id="paging">
+      </b-container>
+      <div id="paging">
           <b-pagination-nav
             base-url="#"
             align="center"
@@ -77,7 +78,6 @@
             v-model="currentPage"
           />
         </div>
-      </b-container>
     </div>
   </div>
 </template>
@@ -111,6 +111,7 @@ export default {
   },
   data() {
     return {
+      selected:'',
       persons: [],
       currentPage: 1,
       searchText: "",
@@ -135,6 +136,9 @@ export default {
 h4 {
   margin-top: 30px;
 }
+.search{
+    margin-top : 50px;
+ }
 #board_main {
   margin-top: 50px;
   margin-right: 100px;
@@ -147,13 +151,14 @@ h4 {
   outline: 0;
 }
 .content_row {
-  width: 70rem;
+  width: 100rem;
+  margin-top: 30px;
 }
 hr {
-  width: 70rem;
+  width: 75rem;
 }
 #paging {
   position: relative;
-  margin-top : 3px; 
+  margin-top : 30%; 
 }
 </style>

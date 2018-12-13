@@ -1,15 +1,15 @@
 <template>
   <div>
-    <h1>용병 상세페이지</h1>
-    <h4>용병정보</h4>
+    <h4>용병 상세페이지</h4>
       <b-container class = "textarea1">
       <b-row align-h="center">
-        <b-col sm="12">
-        아이디: {{persons[0].user_id}}지역: {{persons[0].region}}포지션:{{persons[0].position}} 경기가능날짜,time   : {{persons[0].date}},{{persons[0].time   }}
+        <b-col sm="5"> <b-form-text id="post-title"> 아이디: {{persons[0].user_id}}</b-form-text></b-col>
+        <b-col sm="5"> <b-form-text id="post-title"> 지역: {{persons[0].region}}</b-form-text></b-col>
+      </b-row>
+      <b-row align-h="center">
+        <b-col sm="5"> <b-form-text id="post-title"> 포지션:{{persons[0].position}} </b-form-text>
         </b-col>
-        <b-col sm="11">
-          <b-form-text id="post-title"></b-form-text>
-        </b-col>
+        <b-col sm="7"> <b-form-text id="post-title"> 경기가능날짜,time : {{persons[0].date}},{{persons[0].time}}</b-form-text></b-col>
       </b-row>
     </b-container>
     <h4>comment</h4>
@@ -87,26 +87,15 @@ h4 {
 }
 .textarea1{
   margin-top: 50px;
-  background-color: antiquewhite;
   font-size: 30px;
 }
 .textarea2{
   margin-top: 20px;
-  background-color: antiquewhite;
   font-size: 30px;
   height: 200px;
 }
 .content_row {
   width: 70rem;
-}
-/* #searchBar{
-   width:40rem;
- } */
-hr {
-  width: 70rem;
-}
-#paging {
-  margin-top: 500px;
 }
 .personApply{
     width:120px;
