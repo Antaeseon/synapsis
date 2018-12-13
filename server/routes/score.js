@@ -59,9 +59,22 @@ router.post("/acceptScore", async function(req, res, next) {
     var dif1 = team2.point - team1.point;
     var dif2 = team1.point - team2.point;
 
-    team1.point = team1.point + 250 + dif1 * (1 / 10) + tead1_score * 10;
-    team2.point = team2.point - 200 + dif2 * (1 / 10) + tead2_score * 10;
+    // 점수차이가 500 이상인 경우
+    if (Math.abs(dif1) >= 500) {
+      team1.point =
+        team1.point + 250 + dif1 * (1 / 5) + resTeam[0].team1_score * 10;
+      team2.point =
+        team2.point - 200 + dif2 * (1 / 5) + resTeam[0].team2_score * 10;
+    }
+    // 점수차이가 500 이하인 경우.
+    else {
+      team1.point =
+        team1.point + 250 + dif1 * (1 / 10) + resTeam[0].team1_score * 10;
+      team2.point =
+        team2.point - 200 + dif2 * (1 / 10) + resTeam[0].team2_score * 10;
+    }
 
+    console.log("!!!!!");
     await team1.save();
     await team2.save();
     await resTeam[0].save();
@@ -75,10 +88,19 @@ router.post("/acceptScore", async function(req, res, next) {
 
     var dif1 = team2.point - team1.point;
     var dif2 = team1.point - team2.point;
-
-    team1.point = team1.point - 200 + dif1 * (1 / 10) + team1_score * 10;
-    team2.point = team2.point + 250 + dif2 * (1 / 10) + team2_score * 10;
-
+    
+    if (Math.abs(dif1) >= 500) {
+      team1.point =
+        team1.point - 200 + dif1 * (1 / 5) + resTeam[0].team1_score * 10;
+      team2.point =
+        team2.point + 250 + dif2 * (1 / 5) + resTeam[0].team2_score * 10;
+    } else {
+      team1.point =
+        team1.point - 200 + dif1 * (1 / 10) + resTeam[0].team1_score * 10;
+      team2.point =
+        team2.point + 250 + dif2 * (1 / 10) + resTeam[0].team2_score * 10;
+    }
+    console.log("!!!!!");
     await team1.save();
     await team2.save();
     await resTeam[0].save();
