@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sign text-center">
     <b-form-input
       v-model.trim="id"
       id="inputLive"
@@ -45,7 +45,7 @@
     ></b-form-input>
 
     <div class="categorydiv">
-      <b-form-select v-model="selected" :options="options" class="mt-1"/>
+      <b-form-select v-model="selected" :options="options" class="mt-1 "/>
     </div>
 
     <div class="mt-5">
@@ -141,7 +141,8 @@ export default {
 
 <style>
 .categorydiv {
-  margin-left: 1px;
+  margin-left: auto;
+  margin-right: auto;
   margin-top: 10px;
   width: 30rem;
 }
