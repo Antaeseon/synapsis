@@ -29,7 +29,9 @@
           </b-col>
         </b-row>
       </b-container>
-      <button>등록</button>
+    
+      <button type = "submit">등록</button>
+
     </form>
   </div>
 </template>
@@ -56,6 +58,8 @@ export default {
           if (response.data.result == 1) {
             console.log(response);
             alert("저장성공");
+            this.$router.push("/postpage")
+            
           } else if (response.data.result == 0) {
             alert("저장실패 : 로그인후 사용하세요.");
           }
