@@ -1,6 +1,6 @@
 <template>
   <div id="board">
-    <h4 align-h="center">용병 게시판</h4>
+    <h1 align-h="center">용병 게시판</h1>
     <div class="searchFunction">
       <b-container class="container-example">
         <b-row class="search">
@@ -56,8 +56,8 @@
           </div>
         </b-col>
       </b-row>
-      <b-container class="content_row" align-h="center">
-        <b-row align-h="center">
+      <b-container class="content_row1" align-h="center">
+        <b-row align-h="center" class="content_row2">
           <b-col sm="1">번호</b-col>
           <b-col sm="2">스포츠타입</b-col>
           <b-col sm="2">지역</b-col>
@@ -174,6 +174,9 @@ h4 {
   width: 100rem;
   margin-top: 30px;
 }
+.content_row2 {
+  font-weight: bold;
+}
 hr {
   width: 75rem;
 }
@@ -184,5 +187,6 @@ hr {
 #board {
   margin-left: 2%;
   margin-right: 2%;
+  margin-top: 2%;
 }
 </style>

@@ -48,14 +48,20 @@
     <hr>
     <br>
     <div id="align">
-        <button v-for="match in matchList" :key="match.id" v-show="match.isAdmit==1" class="card-container btn-outline-secondary" disabled >
-          <match-card :match="match"></match-card>
-        </button>
+      <button
+        v-for="match in matchList"
+        :key="match.id"
+        v-show="match.isAdmit==1"
+        class="card-container btn-outline-secondary"
+        disabled
+      >
+        <match-card :match="match"></match-card>
+      </button>
     </div>
     <!-- <ul class="list-group w-50 mx-auto"> -->
-        <!-- <b-col> -->
-            <!-- <li class="list-group-item list-group-item-info m-1" v-for="item in items">{{item}}</li> -->
-        <!-- </b-col> -->
+    <!-- <b-col> -->
+    <!-- <li class="list-group-item list-group-item-info m-1" v-for="item in items">{{item}}</li> -->
+    <!-- </b-col> -->
     <!-- </ul> -->
   </div>
 </template>
@@ -69,10 +75,10 @@ import matchCard from "./card/matchCard";
 export default {
   data() {
     return {
-      user:{},
+      user: {},
       items: ["dd", "aa"],
       myTeamInfo: {},
-      matchList:{}
+      matchList: {}
     };
   },
   async created() {
@@ -80,20 +86,19 @@ export default {
       id: this.$store.getters.id
     });
     user = user.data;
-    this.user=user
-    console.log('스코어',user);
+    this.user = user;
+    console.log("스코어", user);
     let team = await this.$http.post(`${config.uri}/users/getTeamInfo`, {
       teamName: user.teamName
     });
-    let score= await this.$http.post(`${config.uri}/score/getAllScore`,{
-      teamName:user.teamName
-    })
+    let score = await this.$http.post(`${config.uri}/score/getAllScore`, {
+      teamName: user.teamName
+    });
     // console.log(team)
     if (team) {
-      this.myTeamInfo = team.data
-      this.matchList=score.data
+      this.myTeamInfo = team.data;
+      this.matchList = score.data;
     } else {
-        
     }
   },
   computed: {
@@ -101,16 +106,17 @@ export default {
       if (this.myTeamInfo.win + this.myTeamInfo.lose == 0) {
         return 0;
       } else {
-        return (
-          (this.myTeamInfo.win / (this.myTeamInfo.win + this.myTeamInfo.lose))*100
+        return parseInt(
+          (this.myTeamInfo.win / (this.myTeamInfo.win + this.myTeamInfo.lose)) *
+            100
         );
       }
     },
-    tier(){
-      if(this.user.score<500){
-        return 'bronze'
-      }else{
-        return 'none'
+    tier() {
+      if (this.user.score < 500) {
+        return "bronze";
+      } else {
+        return "none";
       }
     }
   },
@@ -132,12 +138,12 @@ export default {
 #myInfo {
   border: 0.1px black;
 }
-.statC{
-    margin-left: 2%;
-    margin-right: 2%;
+.statC {
+  margin-left: 2%;
+  margin-right: 2%;
 }
-.card-container{
-    width:20%;
-    margin: 1%;
+.card-container {
+  width: 20%;
+  margin: 1%;
 }
 </style>
