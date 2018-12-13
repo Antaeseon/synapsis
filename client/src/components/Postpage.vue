@@ -1,6 +1,6 @@
 <template>
   <div id="board">
-    <h4 align-h="center">게시판</h4>
+    <h1 align-h="center">자유게시판</h1>
     <div class="searchFunction">
       <b-container class="container-example">
         <b-row class="search">
@@ -126,5 +126,6 @@ hr {
 #board {
   margin-left: 2%;
   margin-right: 2%;
+  margin-top: 2%;
 }
 </style>
