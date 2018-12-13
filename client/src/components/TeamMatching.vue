@@ -22,7 +22,7 @@
               <p class="text-center">{{myTeamInfo.team_name}}</p>
             </b-col>
             <b-col cols="6" class="bg-second text-black mt-1">
-              <p class="text-center">{{myTeamInfo.score}} points</p>
+              <p class="text-center">{{myTeamInfo.point}} points</p>
             </b-col>
           </b-row>
         </b-col>
@@ -46,15 +46,14 @@
     </div>
     <br>
     <br>
-      <b-form-radio-group
-        id="radios1"
-        v-model="selected"
-        :options="options"
-        name="radioOpenions"
-        class="wid-50"
-      ></b-form-radio-group>
-    
-    
+    <b-form-radio-group
+      id="radios1"
+      v-model="selected"
+      :options="options"
+      name="radioOpenions"
+      class="wid-50"
+    ></b-form-radio-group>
+
     <div>
       <table class="table">
         <thead>
@@ -87,7 +86,6 @@
             <td>{{list.location}}</td>
           </tr>
         </tbody>
-
       </table>
     </div>
     <!-- <ul class="list-group w-50 mx-auto"> -->
@@ -112,8 +110,11 @@ export default {
       myTeamInfo: {},
       matchList: {},
       similarList: {},
-    options: [{ text: "매칭 구함", value: 0 }, { text: "매칭 완료", value: 1 }],
-    selected:0
+      options: [
+        { text: "매칭 구함", value: 0 },
+        { text: "매칭 완료", value: 1 }
+      ],
+      selected: 0
     };
   },
   async created() {
@@ -176,11 +177,10 @@ export default {
         id: id,
         team: this.teamname
       });
-          let tList = await this.$http.post(`${config.uri}/match/getMatchList`, {
-      team: this.teamname
-    });
-    this.similarList = tList.data;
-
+      let tList = await this.$http.post(`${config.uri}/match/getMatchList`, {
+        team: this.teamname
+      });
+      this.similarList = tList.data;
     }
   }
 };

@@ -36,7 +36,7 @@
           </b-row>
           <b-row class="border border-info w-50 mt-1">
             <b-col cols="6">
-              <p class="text-left">{{myTeamInfo.score}} points</p>
+              <p class="text-left">{{myTeamInfo.point}} points</p>
             </b-col>
             <b-col cols="6">
               <p class="text-left">{{tier}}</p>
