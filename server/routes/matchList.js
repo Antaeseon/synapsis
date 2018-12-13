@@ -32,6 +32,11 @@ router.post('/register',async function(req,res){
 
 // 불러오기
 
+router.post('/getMatchList',async function(req,res){
+    var myteam=req.body.team
+    var team=await matchList.find({myteam:{$not:myteam}})
+    res.send(team)
+})
 
 
 
