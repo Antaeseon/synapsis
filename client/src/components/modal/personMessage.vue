@@ -2,11 +2,13 @@
   <div>
     <div v-for="data in dataList" v-bind:key="data.id">
       <div id="msgList" v-show="data.isChecked==1">
-        <h1>신청번호{{data.index}}</h1>
-        <h4>채용신청한 팀 : {{data.teamName}}</h4>
-        <h4>경기날짜 : {{data.date}}</h4>
-        <h4>보내는 메세지 : {{data.comment}}</h4>
-        <h4>index:{{data.index}}</h4>
+        <h3>신청번호{{data.index}}</h3>
+        채용신청한 팀 : {{data.teamName}}
+        <br>
+        경기날짜 : {{data.date}}
+        <br>
+        보내는 메세지 : {{data.comment}}
+        <br>
         <b-button
           class="float-center"
           type="submit"
@@ -21,11 +23,11 @@
         >채용 거절</b-button>
       </div>
       <div id="msgList" v-show="data.isChecked == 0">
-        <h3>신청번호 {{data.index}} :</h3>
-        <h4>현재 당신에게 채용을 요청한 팀이 없습니다.</h4>
+        <h3>신청번호 {{data.index}} :</h3>현재 당신에게 채용을 요청한 팀이 없습니다.
       </div>
       <div id="msgList" v-show="data.isChecked == 2">
         <h3>신청번호 {{data.index}} :</h3>채용완료
+        <br>
         <b-button class="float-center" type="submit" variant="primary" @click="del(data.index)">삭제하기</b-button>
       </div>
     </div>

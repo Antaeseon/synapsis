@@ -31,8 +31,8 @@
         </b-row>
       </b-container>
     </div>
-    <b-container fluid class="content_row">
-      <b-row align-h="center">
+    <b-container fluid class="content_row1">
+      <b-row align-h="center" class="content_row2">
         <b-col>번호</b-col>
         <b-col cols="5">제목</b-col>
         <b-col>작성자</b-col>
@@ -112,9 +112,12 @@ h4 {
   border: 0;
   outline: 0;
 }
-.content_row {
+.content_row1 {
   width: 70rem;
   margin-top: 50px;
+}
+.content_row2 {
+  font-weight: bold;
 }
 hr {
   width: 70rem;
