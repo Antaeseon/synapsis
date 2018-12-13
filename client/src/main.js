@@ -15,6 +15,7 @@ Vue.use(VModal, { dynamic: true })
 Vue.use(BootstrapVue)
 Vue.prototype.$http=axios
 Vue.config.productionTip = false
+Vue.prototype.$EventBus = new Vue;
 
 
 

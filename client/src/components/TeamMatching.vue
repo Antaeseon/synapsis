@@ -32,8 +32,8 @@
     <br>
     <div>
       <b-btn v-b-modal.myCheck variant="primary" class="float-md-right col-2 ml-10">매칭 등록</b-btn>
-      <b-modal no-close-on-backdrop centered id="myCheck" size="md" hide-footer title="매칭 등록">
-        <check></check>
+      <b-modal no-close-on-backdrop centered id="myCheck" size="md" ref="matchModal" hide-footer title="매칭 등록">
+        <team-matching  @exit="closemodal"></team-matching>
       </b-modal>
     </div>
     <br>
@@ -69,8 +69,7 @@
 </template>
 
 <script>
-import mercenary from "./modal/mercenary";
-import check from "./modal/checkScore";
+import teamMatching from "./modal/registerMatch";
 import config from "../../config/config";
 import matchCard from "./card/matchCard";
 
@@ -101,6 +100,7 @@ export default {
       this.myTeamInfo = team.data;
       this.matchList = score.data;
     } else {
+
     }
   },
   computed: {
@@ -123,13 +123,14 @@ export default {
     }
   },
   components: {
-    mercenary,
-    check,
-    matchCard
+    teamMatching,
   },
   methods:{
     registerMatch(){
       console.log('등록됨')
+    },
+    closemodal(){
+      this.$refs.matchModal.hide();
     }
   }
 };

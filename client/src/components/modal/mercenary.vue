@@ -53,7 +53,6 @@ export default {
   methods: {
     async onRegister(event) {
       event.preventDefault(); //prevent reload page
-
       const myteam=await this.$http.post(`${config.uri}/users/getUserInfo`,{id:this.$store.getters.id})
       console.log('내팀',myteam.data.teamName)
       let cntTeam=await this.$http.post(`${config.uri}/users/getTeamInfo`,{teamName:this.counterTeam})
