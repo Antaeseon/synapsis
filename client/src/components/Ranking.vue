@@ -136,7 +136,6 @@ export default {
   margin-right: 4%;
   right: 14%;
   height: 215px;
-  background-color: aqua;
   /* border : 2px solid black;
     box-sizing: content-box; */
 }
@@ -146,7 +145,6 @@ export default {
   float: left;
   width: 33%;
   height: 100%;
-  background-color: beige;
 }
 .SilverMedalImg {
   position: relative;

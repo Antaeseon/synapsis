@@ -31,14 +31,9 @@ router.post("/register", function(req, res) {
   else if(req.body.sportsCategory == 2){person.sportsCategory = "soccer"}
   else{person.sportsCategory = "baseball"}
 
- 
-
   person.position = req.body.position;
   person.region = req.body.region;
   person.comment = req.body.comment;
-
-  
-
   person.save(function(err) {
     if (err) {
       console.error(err);
