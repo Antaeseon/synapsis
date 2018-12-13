@@ -179,7 +179,7 @@ hr {
 }
 #paging {
   position: relative;
-  margin-top: 30%;
+  margin-top: 3%;
 }
 #board {
   margin-left: 2%;
