@@ -8,7 +8,7 @@ router.get("/", function(req, res) {
     if (err) return res.status(500).send({ error: "DB is not found! " });
     res.json(result);
     console.log(result);
-  }).sort({ score: -1 });
+  }).sort({ point: -1 });
 });
 
 module.exports = router;

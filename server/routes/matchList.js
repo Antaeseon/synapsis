@@ -1,7 +1,6 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
-const matchList = require('../models/matchList');
-
+const matchList = require("../models/matchList");
 
 // 등록
 router.post('/register',async function(req,res){

@@ -15,7 +15,7 @@
           >
           <div class="SilverMedalFrame">
             <div>팀이름 : {{teams[1].team_name}}</div>
-            <div>랭크점수 : {{teams[1].score}}</div>
+            <div>랭크점수 : {{teams[1].point}}</div>
             <div>승률 : {{parseInt((teams[1].win/(teams[1].win+teams[1].lose))*100)}}%</div>
             <div>순위 : 2</div>
           </div>
@@ -31,7 +31,7 @@
 
           <div class="GoldMedalFrame">
             <div>팀이름 : {{teams[0].team_name}}</div>
-            <div>랭크점수 : {{teams[0].score}}</div>
+            <div>랭크점수 : {{teams[0].point}}</div>
             <div>승률 : {{parseInt((teams[0].win/(teams[0].win+teams[0].lose))*100)}}%</div>
             <div>순위 : 1</div>
           </div>
@@ -46,7 +46,7 @@
           >
           <div class="BronzeMedalFrame">
             <div>팀이름 : {{teams[2].team_name}}</div>
-            <div>랭크점수 : {{teams[2].score}}</div>
+            <div>랭크점수 : {{teams[2].point}}</div>
             <div>승률 : {{ parseInt(((teams[2].win/(teams[2].win+teams[2].lose))*100)) }}%</div>
             <div>순위 : 3</div>
           </div>
@@ -56,7 +56,7 @@
     <div>
       <div class="listFrame1">
         <b-row class="text-center">
-          <b-col cols="3">팀이릉</b-col>
+          <b-col cols="3">팀이름</b-col>
           <b-col cols="3">랭크점수</b-col>
           <b-col cols="3">승률</b-col>
           <b-col cols="3">순위</b-col>
@@ -67,8 +67,12 @@
           <div class="list" v-for="(team,index) in teams" :key="team.team_name">
             <b-row class="text-center">
               <b-col cols="3">{{team.team_name}}</b-col>
-              <b-col cols="3">{{team.score}}</b-col>
-              <b-col cols="3">{{parseInt((team.win/(team.win+team.lose))*100)}}%</b-col>
+              <b-col cols="3">{{team.point}}</b-col>
+              <b-col
+                cols="3"
+                v-show="team.win+team.lose!=0"
+              >{{parseInt((team.win/(team.win+team.lose))*100)}}%</b-col>
+              <b-col cols="3" v-show="team.win+team.lose==0">0%</b-col>
               <b-col cols="3">{{ index+1 }}</b-col>
             </b-row>
           </div>
@@ -102,6 +106,7 @@ export default {
 
 <style>
 @import url(http://fonts.googleapis.com/css?family=Roboto);
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 .listFrame1 {
   position: relative;
   top: 45px;
@@ -113,7 +118,7 @@ export default {
   box-sizing: content-box;
   font-size: 20px;
   color: aliceblue;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   text-align: left;
 }
 .listFrame2 {
@@ -126,11 +131,13 @@ export default {
   background-color: white;
   border: 1.5px solid black;
   box-sizing: content-box;
+  font-family: "Roboto", sans-serif;
 }
 .list {
   width: 100%;
   font-size: 18px;
   text-align: left;
+  font-family: "Roboto", sans-serif;
 }
 .medalFrame {
   margin-left: 4%;

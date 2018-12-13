@@ -14,12 +14,12 @@
             class="mr-3 mt-3"
           />
           {{showId}}
-          <p>dd</p>
+          <p>Hi~</p>
         </span>
       </b-col>
       <b-col v-if="!Token"/>
       <b-col class="text-center">
-        <b-link to="/" id="maintitle">League of Sports</b-link>
+        <b-link to="/" class="p1">League of Sports</b-link>
       </b-col>
       <b-col></b-col>
     </b-row>
@@ -183,5 +183,10 @@ body {
   color: black;
   font-size: 40px;
   display: inline;
+}
+.p1 {
+  font-family: "Luckiest Guy", cursive;
+  color: goldenrod;
+  font-size: 50px;
 }
 </style>

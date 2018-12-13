@@ -27,7 +27,7 @@
       </div>
 
       <div id="msgList" v-show="data.isChecked == 2">
-        <h2>신청번호 {{data.index}}</h2>
+        <h3>신청번호 {{data.index}}</h3>
         <h5>상태:채용완료</h5>
         채용된 팀: {{data.teamName}}
         <br>
@@ -45,7 +45,7 @@
       </div>
 
       <div id="msgList" v-show="data.isChecked == 3">
-        <h2>신청번호 {{data.index}}</h2>
+        <h3>신청번호 {{data.index}}</h3>  
         <h5>상태:경기종료</h5>
         채용된 팀: {{data.teamName}}
         <br>
