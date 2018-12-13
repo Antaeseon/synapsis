@@ -4,10 +4,10 @@
     <div class = "searchFunction">
       <b-container class="container-example">
         <b-row class="search">
-          <b-col>
+          <b-col sm="3.5">
                 <b-form-select v-model="selected" :options="options" class="mb-3" size = "sm" />
           </b-col>
-          <b-col>
+          <b-col sm="3.5">
             <b-form-input v-model="searchText" type="text" placeholder="Search" size = "sm" id="searchBar" />
           </b-col>
           <b-col>
