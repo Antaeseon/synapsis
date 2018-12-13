@@ -21,12 +21,9 @@ router.post('/register',async function(req,res){
         await match.save();
             res.send({message:"success"})
         }
-        catch{
+        catch(err){
             res.status(403).send({message:"fail"})
         }
-
-
-
 })
 
 
@@ -34,7 +31,7 @@ router.post('/register',async function(req,res){
 
 router.post('/getMatchList',async function(req,res){
     var myteam=req.body.team
-    var team=await matchList.find({myteam:{$not:myteam}})
+    var team=await matchList.find({myteam:{$ne:myteam}})
     res.send(team)
 })
 
