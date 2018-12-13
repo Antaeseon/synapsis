@@ -40,7 +40,7 @@ app.use('/ranking', rankingRouter);
 app.use('/posting', postingRouter);
 app.use('/person',personRouter);
 app.use('/getMatch',getMatchRouter);
-app.use('/matchList',matchListRouter);
+app.use('/match',matchListRouter);
 
 // CONNECT TO MONGODB SERVER
 var db = mongoose.connection;

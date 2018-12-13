@@ -95,7 +95,7 @@ export default {
   },
   methods: {
     async register() {
-      if (this.id.length < 3) {
+      if(this.id.length < 3) {
         alert("Please fill Id");
         return;
       } else if (this.password.length < 8) {
