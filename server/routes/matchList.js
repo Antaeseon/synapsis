@@ -35,7 +35,16 @@ router.post('/getMatchList',async function(req,res){
     res.send(team)
 })
 
+//매치선택
 
-
-
+router.post('/SelectMatch',async function(req,res){
+    var id=req.body.id
+    var team=req.body.team
+    console.log('들어옴')
+    var matchTeam=await matchList.findOne({_id:id})
+    matchTeam.counterteam=team
+    matchTeam.isAdmit=true
+    await matchTeam.save()
+    res.send({message: "success"})
+})
 module.exports = router;

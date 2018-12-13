@@ -32,30 +32,62 @@
     <br>
     <div>
       <b-btn v-b-modal.myCheck variant="primary" class="float-md-right col-2 ml-10">매칭 등록</b-btn>
-      <b-modal no-close-on-backdrop centered id="myCheck" size="md" ref="matchModal" hide-footer title="매칭 등록">
-        <team-matching  @exit="closemodal"></team-matching>
+      <b-modal
+        no-close-on-backdrop
+        centered
+        id="myCheck"
+        size="md"
+        ref="matchModal"
+        hide-footer
+        title="매칭 등록"
+      >
+        <team-matching @exit="closemodal"></team-matching>
       </b-modal>
     </div>
     <br>
     <br>
+      <b-form-radio-group
+        id="radios1"
+        v-model="selected"
+        :options="options"
+        name="radioOpenions"
+        class="wid-50"
+      ></b-form-radio-group>
+    
+    
     <div>
       <table class="table">
         <thead>
-          <tr>
+          <tr v-if="selected==0">
             <th scope="col">팀명</th>
             <th scope="col">경기 시간</th>
             <th scope="col">선호장소</th>
             <th scope="col">매치</th>
           </tr>
+          <tr v-else-if="selected==1">
+            <th scope="col">팀명</th>
+            <th scope="col">경기 시간</th>
+            <th scope="col">경기장소</th>
+          </tr>
         </thead>
-        <tbody>
+        <tbody v-if="selected==0">
           <tr v-for="list in similarList" :key="list._id" v-show="list.isAdmit==false">
             <td>{{list.myteam}}</td>
             <td>{{list.date}}</td>
             <td>{{list.location}}</td>
-            <td><button @click="chooseMatch(list._id)">Click!!</button></td>
+            <td>
+              <button @click="chooseMatch(list._id)">Click!!</button>
+            </td>
           </tr>
         </tbody>
+        <tbody v-if="selected==1">
+          <tr v-for="list in similarList" :key="list._id" v-show="list.isAdmit==true">
+            <td>{{list.myteam}}</td>
+            <td>{{list.date}}</td>
+            <td>{{list.location}}</td>
+          </tr>
+        </tbody>
+
       </table>
     </div>
     <!-- <ul class="list-group w-50 mx-auto"> -->
@@ -74,11 +106,14 @@ import matchCard from "./card/matchCard";
 export default {
   data() {
     return {
+      teamname: "",
       user: {},
       items: ["dd", "aa"],
       myTeamInfo: {},
       matchList: {},
-      similarList:{}
+      similarList: {},
+    options: [{ text: "매칭 구함", value: 0 }, { text: "매칭 완료", value: 1 }],
+    selected:0
     };
   },
   async created() {
@@ -94,16 +129,18 @@ export default {
     let score = await this.$http.post(`${config.uri}/score/getAllScore`, {
       teamName: user.teamName
     });
-    console.log('이쪽 팀',score)
+    console.log("이쪽 팀", score);
     if (team) {
       this.myTeamInfo = team.data;
       this.matchList = score.data;
     } else {
-
     }
-    let tempList= await this.$http.post(`${config.uri}/match/getMatchList`,{team:team.data.team_name})
-    console.log(tempList.data)
-    this.similarList=tempList.data
+    this.teamname = team.data.team_name;
+    let tempList = await this.$http.post(`${config.uri}/match/getMatchList`, {
+      team: team.data.team_name
+    });
+    console.log(tempList.data);
+    this.similarList = tempList.data;
   },
   computed: {
     percent() {
@@ -125,17 +162,25 @@ export default {
     }
   },
   components: {
-    teamMatching,
+    teamMatching
   },
-  methods:{
-    registerMatch(){
-      console.log('등록됨')
+  methods: {
+    registerMatch() {
+      console.log("등록됨");
     },
-    closemodal(){
+    closemodal() {
       this.$refs.matchModal.hide();
     },
-    chooseMatch(id){
-      console.log(id)
+    async chooseMatch(id) {
+      let tempList = await this.$http.post(`${config.uri}/match/SelectMatch`, {
+        id: id,
+        team: this.teamname
+      });
+          let tList = await this.$http.post(`${config.uri}/match/getMatchList`, {
+      team: this.teamname
+    });
+    this.similarList = tList.data;
+
     }
   }
 };
