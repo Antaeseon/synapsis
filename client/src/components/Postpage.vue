@@ -10,8 +10,8 @@
           <b-col sm="3.5">
             <b-form-input v-model="searchText" type="text" placeholder="Search" size = "sm" id="searchBar" />
           </b-col>
-          <b-col>
-            <b-button id="searchButton" type="submit" size = "sm" variant="primary"  >Search</b-button>
+          <b-col sm="0.5">
+            <b-button id="searchButton" type="submit" size = "sm">Search</b-button>
           </b-col>
           <b-col>
             <b-button id = "write_board"  size = "sm" class ="mr-30" to='/postpage/write' variant="primary" >글쓰기</b-button>
@@ -19,35 +19,36 @@
         </b-row>
       </b-container>
     </div>
-    <div id="board">
-      <div id = "board_main">
-        <b-container fluid class="content_row">
-          <b-row class="text-center" align-h= "center" >
-              <b-col >번호</b-col>
-              <b-col cols="5">제목</b-col>
-              <b-col>작성자</b-col>
-              <b-col cols="2">등록일</b-col>
-              <b-col>조회수</b-col>
-          </b-row>  
-          <hr>   
-          <div v-for="item in boards" v-bind:key="item.id"> 
-            <b-row class="text-center">
-              <b-col >{{item.index}}</b-col>
-              <b-col cols="5">
-                  <router-link :to="{name: 'board',params:{idx: item.index}}"> {{item.title}} </router-link>
-              </b-col>
-              <b-col>{{item.user_id}}</b-col>
-              <b-col cols="2">{{item.date}}</b-col>
-              <b-col>{{item.count}}</b-col>
-            </b-row>
-            <hr>
-          </div>
-        </b-container>
-        <div id = "paging">
-            <b-pagination-nav base-url="#" align = "center" :total-rows="10" :number-of-pages="10" v-model="currentPage" />
-        </div>
+    <b-container fluid class="content_row">
+      <b-row align-h= "center" >
+        <b-col >번호</b-col>
+        <b-col cols="5">제목</b-col>
+        <b-col>작성자</b-col>
+        <b-col cols="2">등록일</b-col>
+        <b-col>조회수</b-col>
+      </b-row>  
+      <hr>   
+      <div v-for="item in boards" v-bind:key="item.id"> 
+        <b-row align-h="center">
+          <b-col >{{item.index}}</b-col>
+          <b-col cols="5">
+            <router-link :to="{name: 'board',params:{idx: item.index}}"> {{item.title}} </router-link>
+          </b-col>
+          <b-col>{{item.user_id}}</b-col>
+          <b-col cols="2">{{item.date}}</b-col>
+          <b-col>{{item.count}}</b-col>
+        </b-row>
+        <hr>
       </div>
-    </div>
+    </b-container> 
+    <div id = "paging">
+        <b-pagination-nav 
+          base-url="#" 
+          align = "center" 
+          :total-rows="10" 
+          :number-of-pages="10" 
+          v-model="currentPage" />
+      </div>      
   </div>
 </template>
 
@@ -85,18 +86,11 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.text-center{
-  width:80%;
-  margin:auto;
-}
 h4{
     margin-top: 30px;
 }
- #board_main {
-  margin-top: 50px;
-  margin-left: 300px;
-  margin-right:400px;
-
+.search{
+    margin-top : 50px;
  }
  #title_button{
    float: center;
@@ -107,12 +101,10 @@ h4{
  }
  .content_row {
    width:70rem;
- }
-.search{
-    margin-top : 50px;
+   margin-top: 50px;
  }
  hr{
-   width:80rem;
+   width: 70rem;
  }
  #paging{
     position: relative;
